@@ -324,7 +324,6 @@ details[open] .pm { transform: rotate(45deg); }
 /* Start states for animated elements (only with .motion) */
 .motion [data-reveal], .motion [data-hero], .motion [data-hero-media] .photo { opacity: 0; }
 .motion .ln > span { transform: translateY(110%); }
-.motion .plan .layer { opacity: 0; }
 
 /* Responsive */
 @media (max-width: 960px) {
@@ -491,26 +490,6 @@ details[open] .pm { transform: rotate(45deg); }
         <div class="frame" aria-hidden="true"></div>
         <div class="photo arch">
           <img src="fotos/hero-dra.jpg" alt="" width="1200" height="1500" loading="lazy">
-          <svg class="facemap" viewBox="0 0 1200 1500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <g class="layer" data-layer="0">
-              <circle class="ring" cx="612" cy="450" r="250"/>
-            </g>
-            <g class="layer" data-layer="1">
-              <line class="v dash" x1="612" y1="225" x2="612" y2="675"/>
-              <line class="h" x1="455" y1="240" x2="790" y2="240"/>
-              <line class="h" x1="440" y1="372" x2="800" y2="372"/>
-              <line class="h" x1="440" y1="525" x2="800" y2="525"/>
-              <line class="h" x1="470" y1="655" x2="770" y2="655"/>
-            </g>
-            <g class="layer" data-layer="2">
-              <circle cx="600" cy="295" r="8"/><circle cx="525" cy="452" r="7"/><circle cx="690" cy="447" r="7"/>
-              <circle cx="575" cy="578" r="6"/><circle cx="678" cy="575" r="6"/><circle cx="612" cy="570" r="6"/>
-              <circle cx="625" cy="650" r="8"/><circle cx="508" cy="608" r="7"/><circle cx="752" cy="598" r="7"/>
-            </g>
-            <g class="layer" data-layer="3">
-              <g class="tag"><rect x="400" y="1010" width="400" height="48" rx="24"/><text x="600" y="1043" text-anchor="middle">resultado natural</text></g>
-            </g>
-          </svg>
         </div>
       </div>
       <div class="plan__body">
@@ -848,17 +827,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* "Planejamento passo a passo" — pinned sequence on desktop, simple reveal on phones */
   const plan = document.querySelector('.plan');
-  const layers = [...plan.querySelectorAll('.layer')];
   const steps = [...plan.querySelectorAll('.pstep')];
-  const drawLayer = (i, tl, at) => {
-    const L = layers[i];
-    tl.fromTo(L, { opacity: 0 }, { opacity: 1, duration: .3, ease: EASE2 }, at);
-    L.querySelectorAll('.h').forEach((l, k) => tl.fromTo(l, { scaleX: 0 }, { scaleX: 1, duration: .5, ease: EASE }, at + k * .06));
-    L.querySelectorAll('.v').forEach(l => tl.fromTo(l, { scaleY: 0 }, { scaleY: 1, duration: .5, ease: EASE }, at));
-    L.querySelectorAll('circle:not(.ring)').forEach((c, k) => tl.fromTo(c, { scale: 0 }, { scale: 1, duration: .35, ease: 'back.out(2.4)' }, at + k * .04));
-    L.querySelectorAll('.ring').forEach(c => tl.fromTo(c, { scale: .7, opacity: 0 }, { scale: 1, opacity: .7, duration: .5, ease: EASE }, at));
-    L.querySelectorAll('.tag').forEach(t => tl.fromTo(t, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: .4, ease: EASE }, at));
-  };
   mm.add('(min-width: 961px)', () => {
     plan.classList.add('is-pinned');
     steps.forEach(s => { s.removeAttribute('data-reveal'); s.style.opacity = ''; });
@@ -867,14 +836,8 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollTrigger: { trigger: plan, start: 'top top', end: () => '+=' + innerHeight * 2.4, pin: true, scrub: .6, anticipatePin: 1, invalidateOnRefresh: true, onUpdate: self => setStep(self.progress) }
     });
     tl.fromTo('.psteps__bar', { scaleY: 0 }, { scaleY: 1, ease: 'none', duration: 4 }, 0);
-    layers.forEach((L, i) => drawLayer(i, tl, i));
-    tl.to(layers[1], { opacity: .35, duration: .4, ease: EASE2 }, 3.1);
     setStep(0);
     return () => { plan.classList.remove('is-pinned'); steps.forEach(s => s.classList.remove('on')); };
-  });
-  mm.add('(max-width: 960px)', () => {
-    const tl = gsap.timeline({ scrollTrigger: { trigger: plan.querySelector('.plan__media'), start: 'top 75%', once: true } });
-    layers.forEach((L, i) => drawLayer(i, tl, i * .5));
   });
 
   /* "Revelação escalonada" */

@@ -1,0 +1,129 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design System | Dra. Camila Fagundes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .ds { padding: 64px 0 120px; }
+  .ds section { padding: 56px 0; border-top: 1px solid rgba(184,151,106,.45); }
+  .ds h2.h2 { margin: 14px 0 32px; }
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 18px; }
+  .sw { border-radius: var(--radius-sm); overflow: hidden; background: var(--white); border: 1px solid rgba(184,151,106,.3); }
+  .sw i { display: block; height: 96px; }
+  .sw div { padding: 12px 14px; font-size: .82rem; line-height: 1.45; }
+  .sw b { display: block; font-weight: 500; }
+  .row { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
+  .spec { font-size: .8rem; color: var(--taupe); margin-top: 6px; }
+  .type > * + * { margin-top: 26px; }
+  .spaces { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-end; }
+  .spaces div { background: var(--rose-soft); border-radius: 6px; }
+  .spaces span { display: block; font-size: .75rem; color: var(--taupe); margin-top: 6px; text-align: center; }
+  .icons { display: flex; gap: 28px; }
+  .icons svg { width: 32px; height: 32px; stroke: var(--cafe); fill: none; stroke-width: 1.5; }
+  .icons svg.g { stroke: var(--gold); }
+  .state-focus { outline: 2px solid var(--cafe); outline-offset: 3px; }
+  .demo-card { max-width: 340px; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="arrow" viewBox="0 0 22 10"><path d="M0 5h20M16 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2"/></symbol>
+  <symbol id="mono" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30.5" fill="none" stroke="#B8976A" stroke-width="1"/><text x="32" y="41" text-anchor="middle" fill="#3B2F2B" font-family="Cormorant Garamond, Georgia, serif" font-style="italic" font-size="26">CF</text></symbol>
+</svg>
+<main class="container ds">
+  <a class="brand" href="index.html"><svg class="mono"><use href="#mono"/></svg><span>Camila Fagundes<small>Design system</small></span></a>
+
+  <section>
+    <span class="label">01 · Cores</span>
+    <h2 class="h2">Paleta <em>quiet luxury</em></h2>
+    <div class="swatches">
+      <div class="sw"><i style="background:#FAF6F2"></i><div><b>Off-white</b>#FAF6F2 · fundo principal</div></div>
+      <div class="sw"><i style="background:#F1E6DD"></i><div><b>Nude claro</b>#F1E6DD · seções alternadas</div></div>
+      <div class="sw"><i style="background:#C9A09A"></i><div><b>Rosé queimado</b>#C9A09A · destaque</div></div>
+      <div class="sw"><i style="background:#B8976A"></i><div><b>Champagne</b>#B8976A · linhas e molduras</div></div>
+      <div class="sw"><i style="background:#3B2F2B"></i><div><b>Café</b>#3B2F2B · texto, botões (12.4:1)</div></div>
+      <div class="sw"><i style="background:#76665E"></i><div><b>Taupe</b>#76665E · texto secundário (5.0:1)</div></div>
+    </div>
+    <p class="spec">Acessibilidade: o taupe do briefing (#8A7A72) foi escurecido para #76665E para passar no WCAG AA. Rosé e champagne não são usados em texto pequeno sobre fundo claro; no hover do botão, o texto passa a café sobre rosé (5.6:1).</p>
+  </section>
+
+  <section>
+    <span class="label">02 · Tipografia</span>
+    <h2 class="h2">Serifa <em>editorial</em></h2>
+    <div class="type">
+      <div><p class="display">Apaixone-se <em>por si.</em></p><p class="spec">Display · Cormorant Garamond 300 · 52–80px · −0.02em</p></div>
+      <div><p class="h2">Título de seção <em>em itálico</em></p><p class="spec">H2 · Cormorant Garamond 400 · 38–60px</p></div>
+      <div><p class="h3">Título de card</p><p class="spec">H3 · Cormorant Garamond 400 · 26–32px</p></div>
+      <div><p class="quote">“Biomédica esteta e completamente apaixonada pelo que faço.”</p><p class="spec">Citação · Cormorant itálico 300 · 24–36px · fio champagne</p></div>
+      <div><span class="label">Rótulo em caixa alta</span><p class="spec">Rótulo · Inter 500 · 12px · 0.15em</p></div>
+      <div><p class="measure">Corpo de texto em Inter, 16–18px, entrelinha 1.7 e no máximo 65 caracteres por linha, para leitura confortável no celular e no computador.</p><p class="spec">Corpo · Inter 400 · 16–18px · 1.7</p></div>
+      <div><p class="signature">Camila Fagundes</p><p class="spec">Assinatura · Allura</p></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="label">03 · Espaçamento</span>
+    <h2 class="h2">Respiro <em>generoso</em></h2>
+    <div class="spaces">
+      <div><div style="width:8px;height:8px"></div><span>8</span></div>
+      <div><div style="width:16px;height:16px"></div><span>16</span></div>
+      <div><div style="width:24px;height:24px"></div><span>24</span></div>
+      <div><div style="width:32px;height:32px"></div><span>32</span></div>
+      <div><div style="width:48px;height:48px"></div><span>48</span></div>
+      <div><div style="width:72px;height:72px"></div><span>72 · seção mobile</span></div>
+      <div><div style="width:152px;height:152px"></div><span>120–152 · seção desktop</span></div>
+    </div>
+    <p class="spec">Grid de 12 colunas · largura máxima 1200px · margens 20–48px · cantos 28px (fotos e cards) e 16px (elementos menores).</p>
+  </section>
+
+  <section>
+    <span class="label">04 · Botões e estados</span>
+    <h2 class="h2">Componentes</h2>
+    <div class="row">
+      <a class="btn" href="#">Agendar avaliação <svg class="arrow"><use href="#arrow"/></svg></a>
+      <a class="btn" href="#" style="background:var(--rose);border-color:var(--rose);color:var(--cafe)">Hover <svg class="arrow" style="transform:translateX(5px)"><use href="#arrow"/></svg></a>
+      <a class="btn state-focus" href="#">Foco</a>
+      <a class="btn" href="#" style="transform:scale(.98)">Ativo</a>
+    </div>
+    <div class="row" style="margin-top:18px">
+      <a class="btn btn--ghost" href="#">Secundário</a>
+      <a class="btn btn--ghost" href="#" style="background:var(--cafe);color:var(--off-white)">Secundário hover</a>
+      <span style="background:var(--cafe);padding:16px;border-radius:999px"><a class="btn btn--rose" href="#">Botão rosé (CTA escuro)</a></span>
+    </div>
+    <p class="spec">Pílula · 52px de altura · 32px de padding lateral · caixa alta 0.15em · seta fina desliza 5px no hover.</p>
+  </section>
+
+  <section>
+    <span class="label">05 · Card e ícones</span>
+    <h2 class="h2">Card de <em>procedimento</em></h2>
+    <div class="row" style="align-items:flex-start;gap:48px">
+      <a class="card demo-card" href="#">
+        <div class="photo"><img src="fotos/proc-labios.jpg" alt=""></div>
+        <div class="card__body"><span class="label">Contorno e volume</span><h3 class="h3">Lábios</h3><p>No hover, a foto aproxima levemente e surge a borda champagne.</p><span class="link-arrow">Agendar <svg class="arrow"><use href="#arrow"/></svg></span></div>
+      </a>
+      <div>
+        <div class="icons">
+          <svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg>
+          <svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <svg class="g" viewBox="0 0 24 24"><path d="M12 3c2 3 6 5 6 10a6 6 0 0 1-12 0c0-5 4-7 6-10z"/></svg>
+          <svg class="g" viewBox="0 0 24 24"><circle cx="12" cy="9" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+        </div>
+        <p class="spec">Ícones de traço 1.5px · café (funcionais) ou champagne (decorativos).</p>
+        <div class="row" style="margin-top:36px;gap:28px">
+          <svg class="mono" style="width:96px;height:96px"><use href="#mono"/></svg>
+          <div class="photo arch" style="width:140px"><img src="fotos/dra-camila.jpg" alt=""></div>
+        </div>
+        <p class="spec">Monograma CF · foto em arco (topo arredondado, base 28px).</p>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

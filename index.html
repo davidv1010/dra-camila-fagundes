@@ -324,7 +324,7 @@ details[open] .pm { transform: rotate(45deg); }
 /* Start states for animated elements (only with .motion) */
 .motion [data-reveal], .motion [data-hero], .motion [data-hero-media] .photo { opacity: 0; }
 .motion .ln > span { transform: translateY(110%); }
-.motion .hero .facemap line, .motion .hero .facemap circle, .motion .hero .facemap .tag, .motion .plan .layer { opacity: 0; }
+.motion .plan .layer { opacity: 0; }
 
 /* Responsive */
 @media (max-width: 960px) {
@@ -374,7 +374,7 @@ details[open] .pm { transform: rotate(45deg); }
   <div class="container nav__in">
     <a class="brand" href="#topo" aria-label="Dra. Camila Fagundes, início">
       <svg class="mono" aria-hidden="true"><use href="#mono"/></svg>
-      <span>Camila Fagundes<small>Harmonização facial</small></span>
+      <span>Dra. Camila Fagundes<small>Harmonização facial</small></span>
     </a>
     <ul class="nav__links">
       <li><a href="#sobre">Sobre</a></li>
@@ -402,7 +402,7 @@ details[open] .pm { transform: rotate(45deg); }
 
 <main id="topo">
 
-  <!-- HERO — "Entrada do hero" + "Marcação do hero" -->
+  <!-- HERO — "Entrada do hero" -->
   <section class="hero">
     <div class="blob" aria-hidden="true"></div>
     <div class="container hero__grid">
@@ -423,17 +423,6 @@ details[open] .pm { transform: rotate(45deg); }
         <div class="frame" data-hero aria-hidden="true"></div>
         <div class="photo arch" data-parallax><div class="pz">
           <img src="fotos/hero-dra.jpg" alt="Dra. Camila Fagundes de camisa branca" width="1200" height="1500" fetchpriority="high">
-          <svg class="facemap" viewBox="0 0 1200 1500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <line class="v dash" x1="612" y1="225" x2="612" y2="675"/>
-            <line class="h" x1="455" y1="240" x2="790" y2="240"/>
-            <line class="h" x1="440" y1="372" x2="800" y2="372"/>
-            <line class="h" x1="440" y1="525" x2="800" y2="525"/>
-            <line class="h" x1="470" y1="655" x2="770" y2="655"/>
-            <circle cx="490" cy="470" r="7"/><circle cx="760" cy="462" r="7"/>
-            <circle cx="575" cy="578" r="6"/><circle cx="678" cy="575" r="6"/>
-            <circle cx="625" cy="650" r="7"/><circle cx="508" cy="608" r="6"/><circle cx="752" cy="598" r="6"/>
-            <g class="tag"><rect x="815" y="352" width="250" height="40" rx="20"/><text x="840" y="381">terços faciais</text></g>
-          </svg>
         </div></div>
         <div class="seal" data-hero aria-hidden="true">
           <svg class="ring" viewBox="0 0 120 120"><defs><path id="circ" d="M60 60m-48 0a48 48 0 1 1 96 0a48 48 0 1 1-96 0"/></defs><text><textPath href="#circ" textLength="298" lengthAdjust="spacing">Harmonização Facial • Igarapé MG •</textPath></text></svg>
@@ -454,7 +443,7 @@ details[open] .pm { transform: rotate(45deg); }
         <h2 class="h2" data-reveal>Prazer, sou a <em>Dra. Camila</em></h2>
         <blockquote class="quote" data-reveal>“Biomédica esteta e completamente apaixonada pelo que faço.”</blockquote>
         <p class="measure" data-reveal>Marco o seu rosto ponto a ponto e só indico o que faz sentido para você.</p>
-        <p class="signature" data-reveal aria-label="Assinatura: Camila Fagundes">Camila Fagundes</p>
+        <p class="signature" data-reveal aria-label="Assinatura: Dra. Camila Fagundes">Dra. Camila Fagundes</p>
       </div>
     </div>
   </section>
@@ -836,9 +825,8 @@ document.addEventListener('DOMContentLoaded', () => {
   gsap.registerPlugin(ScrollTrigger);
   const mm = gsap.matchMedia();
 
-  /* "Entrada do hero" — orchestrated: label → title → subtitle → photo → buttons/counters → "Marcação do hero" → seal */
+  /* "Entrada do hero" — orchestrated: label → title → subtitle → photo → buttons → seal */
   const hero = document.querySelector('.hero');
-  const hm = hero.querySelector('.facemap');
   const photoFirst = matchMedia('(max-width: 960px)').matches;  /* on phones the photo sits above the title, so it enters first */
   gsap.timeline({ defaults: { ease: EASE }, delay: .15 })
     .fromTo('.hero .label', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: T.mid })
@@ -848,10 +836,6 @@ document.addEventListener('DOMContentLoaded', () => {
     .fromTo('[data-hero-media] .pz', { scale: 1.18 }, { scale: 1.08, duration: 1.8 }, '<')
     .fromTo('.hero__ctas', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: T.mid, stagger: STAGGER }, '-=1.2')
     .fromTo('.hero .frame', { opacity: 0, scale: .96 }, { opacity: 1, scale: 1, duration: T.slow }, '-=.8')
-    .fromTo(hm.querySelector('.v'), { opacity: 0, scaleY: 0 }, { opacity: .9, scaleY: 1, duration: T.slow }, '-=.6')
-    .fromTo(hm.querySelectorAll('.h'), { opacity: 0, scaleX: 0 }, { opacity: .85, scaleX: 1, duration: T.slow, stagger: .1 }, '-=.9')
-    .fromTo(hm.querySelectorAll('circle'), { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: T.mid, ease: 'back.out(2.4)', stagger: .06 }, '-=.6')
-    .fromTo(hm.querySelector('.tag'), { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: T.mid }, '-=.2')
     .fromTo('.hero .seal', { opacity: 0, scale: .6, rotate: -40 }, { opacity: 1, scale: 1, rotate: 0, duration: T.slow }, '-=.8');
 
   /* "Parallax das fotos" (desktop only) */

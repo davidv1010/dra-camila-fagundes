@@ -336,11 +336,13 @@ details[open] .pm { transform: rotate(45deg); }
 @media (max-width: 960px) {
   .nav__links, .nav .btn { display: none; }
   .burger { display: block; }
-  .hero { min-height: auto; padding-top: 104px; }
+  .hero { min-height: auto; padding-top: 96px; }
   .hero__grid, .about__grid, .results__grid, .faq__grid, .plan__grid, .planner__grid { grid-template-columns: 1fr; }
   .hero__grid > *, .about__grid > *, .results__grid > *, .faq__grid > *, .plan__grid > *, .planner__grid > * { grid-column: 1 / -1; }
-  .hero__media { margin: 56px 0 0 auto; width: min(86%, 440px); }
-  .seal { left: -40px; bottom: 28px; width: 112px; height: 112px; }
+  .hero__media { order: -1; margin: 0 auto 36px; width: min(84%, 420px); }
+  .hero__text .label { display: none; }
+  .hero__text .display { margin-top: 0; }
+  .seal { left: -22px; bottom: 24px; width: 104px; height: 104px; }
   .seal .mono { width: 44px; height: 44px; }
   .about__media { width: min(92%, 440px); margin: 0 auto 48px; padding: 28px 0 28px 28px; }
   .cards { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%; overflow-x: auto; scroll-snap-type: x mandatory; gap: 16px; padding-bottom: 12px; margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); scrollbar-width: none; }
@@ -862,11 +864,12 @@ document.addEventListener('DOMContentLoaded', () => {
   /* "Entrada do hero" — orchestrated: label → title → subtitle → photo → buttons/counters → "Marcação do hero" → seal */
   const hero = document.querySelector('.hero');
   const hm = hero.querySelector('.facemap');
+  const photoFirst = matchMedia('(max-width: 960px)').matches;  /* on phones the photo sits above the title, so it enters first */
   gsap.timeline({ defaults: { ease: EASE }, delay: .15 })
     .fromTo('.hero .label', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: T.mid })
     .to('.hero .ln > span', { y: 0, duration: T.slow, stagger: .12 }, '-=.3')
     .fromTo('.hero__slogan, .hero .lead', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: T.mid, stagger: STAGGER }, '-=.7')
-    .fromTo('[data-hero-media] .photo', { opacity: 0, scale: .94 }, { opacity: 1, scale: 1, duration: T.slow }, '-=.9')
+    .fromTo('[data-hero-media] .photo', { opacity: 0, scale: .94 }, { opacity: 1, scale: 1, duration: T.slow }, photoFirst ? 0 : '-=.9')
     .fromTo('[data-hero-media] .pz', { scale: 1.18 }, { scale: 1.08, duration: 1.8 }, '<')
     .fromTo('.hero__ctas, .hero__proof', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: T.mid, stagger: STAGGER }, '-=1.2')
     .add(() => document.querySelectorAll('.hero__proof [data-count]').forEach((el, i) => countUp(el, i * .1)), '<')

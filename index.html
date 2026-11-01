@@ -117,15 +117,6 @@ button, input { font: inherit; color: inherit; }
 
 /* Face map overlay (hero, pin and planner) — SVG in the 1200×1500 space of hero-dra.jpg */
 .pz { position: absolute; inset: 0; }
-.facemap { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
-.facemap line { stroke: #fff; stroke-width: 2.2; vector-effect: non-scaling-stroke; stroke-linecap: round; transform-box: fill-box; }
-.facemap .dash { stroke-dasharray: 2 6; }
-.facemap .h { transform-origin: left center; }
-.facemap .v { transform-origin: center top; }
-.facemap circle { fill: #fff; transform-box: fill-box; transform-origin: center; }
-.facemap circle.ring { fill: none; stroke: #fff; stroke-width: 2; vector-effect: non-scaling-stroke; }
-.facemap text { font-family: var(--sans); font-size: 26px; letter-spacing: .12em; text-transform: uppercase; fill: #fff; }
-.facemap .tag rect { fill: rgba(58, 38, 27, .55); }
 
 /* Header */
 .nav { position: fixed; inset: 0 0 auto; z-index: 50; }
@@ -247,9 +238,6 @@ button, input { font: inherit; color: inherit; }
 /* Monte seu plano — interactive face map */
 .planner__grid { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; align-items: start; }
 .planner__media { grid-column: 1 / 6; position: relative; max-width: 460px; width: 100%; }
-.hotspot { position: absolute; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%; cursor: pointer; }
-.hotspot::before { content: ""; position: absolute; inset: 14px; border-radius: 50%; border: 1.5px dashed rgba(255, 255, 255, .95); transition: transform var(--t-fast) var(--ease-trace); }
-.hotspot:hover::before { transform: scale(1.4); }
 .planner__body { grid-column: 7 / 13; }
 .planner__body .h2 { margin: 18px 0 18px; }
 .field { position: relative; margin: 28px 0 22px; }
@@ -541,12 +529,8 @@ details[open] .pm { transform: rotate(45deg); }
     <div class="container planner__grid">
       <div class="planner__media" data-reveal>
         <div class="frame" aria-hidden="true"></div>
-        <div class="photo arch" id="pmap">
+        <div class="photo arch">
           <img src="fotos/hero-dra.jpg" alt="" width="1200" height="1500" loading="lazy">
-          <svg class="facemap" viewBox="0 0 1200 1500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <line class="v dash" x1="612" y1="225" x2="612" y2="675" style="opacity:.45"/>
-            <g id="pmarks"></g>
-          </svg>
         </div>
       </div>
       <div class="planner__body">
@@ -566,7 +550,6 @@ details[open] .pm { transform: rotate(45deg); }
             <dl>
               <div class="ficha__row"><dt>Paciente</dt><dd id="f-nome" class="ficha__empty">—</dd></div>
               <div class="ficha__row"><dt>Áreas</dt><dd><ul class="ficha__list" id="f-areas"><li class="ficha__empty">Nenhuma área marcada ainda</li></ul></dd></div>
-              <div class="ficha__row"><dt>Pontos</dt><dd><strong id="f-count">0</strong> marcado(s)</dd></div>
             </dl>
             <button class="btn" type="submit">Enviar meu plano no WhatsApp <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></button>
             <p class="ficha__error" id="f-error" aria-live="polite"></p>
@@ -734,44 +717,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- "Ficha que se preenche" ---------- */
   const AREAS = [
-    { id: 'testa', label: 'Testa', proc: 'linhas de expressão (botox)', pts: [[600, 295]] },
-    { id: 'olheiras', label: 'Olheiras', proc: 'preenchimento de olheiras', pts: [[525, 452], [690, 447]] },
-    { id: 'nariz', label: 'Nariz', proc: 'rinomodelação', pts: [[610, 495]] },
-    { id: 'labios', label: 'Lábios', proc: 'preenchimento labial', pts: [[575, 578], [612, 570], [678, 575]] },
-    { id: 'contorno', label: 'Contorno', proc: 'mandíbula e queixo (harmonização)', pts: [[508, 608], [625, 650], [752, 598]] },
-    { id: 'pele', label: 'Pele', proc: 'firmeza e viço (bioestimulador ou Hipro)', pts: [[770, 505], [470, 505]] }
+    { id: 'testa', label: 'Testa', proc: 'linhas de expressão (botox)' },
+    { id: 'olheiras', label: 'Olheiras', proc: 'preenchimento de olheiras' },
+    { id: 'nariz', label: 'Nariz', proc: 'rinomodelação' },
+    { id: 'labios', label: 'Lábios', proc: 'preenchimento labial' },
+    { id: 'contorno', label: 'Contorno', proc: 'mandíbula e queixo (harmonização)' },
+    { id: 'pele', label: 'Pele', proc: 'firmeza e viço (bioestimulador ou Hipro)' }
   ];
-  const chipsBox = document.querySelector('#planner .chips'), marks = document.getElementById('pmarks'), pmap = document.getElementById('pmap');
-  const fNome = document.getElementById('f-nome'), fAreas = document.getElementById('f-areas'), fCount = document.getElementById('f-count'), fErr = document.getElementById('f-error');
+  const chipsBox = document.querySelector('#planner .chips');
+  const fNome = document.getElementById('f-nome'), fAreas = document.getElementById('f-areas'), fErr = document.getElementById('f-error');
   const nome = document.getElementById('nome');
   const sel = new Set();
-  const NS = 'http://www.w3.org/2000/svg';
   AREAS.forEach(a => {
     const b = document.createElement('button');
     b.type = 'button'; b.className = 'chip'; b.textContent = a.label; b.setAttribute('aria-pressed', 'false'); b.dataset.area = a.id;
     b.addEventListener('click', () => toggle(a.id));
     chipsBox.appendChild(b);
-    const g = document.createElementNS(NS, 'g'); g.dataset.area = a.id;
-    a.pts.forEach(([x, y]) => {
-      const ring = document.createElementNS(NS, 'circle'); ring.setAttribute('class', 'ring'); ring.setAttribute('cx', x); ring.setAttribute('cy', y); ring.setAttribute('r', 26);
-      const dot = document.createElementNS(NS, 'circle'); dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('r', 8);
-      g.append(ring, dot);
-    });
-    g.style.opacity = 0; marks.appendChild(g);
-    const hs = document.createElement('span'); hs.className = 'hotspot'; hs.setAttribute('aria-hidden', 'true'); hs.title = a.label;
-    hs.style.left = (a.pts[0][0] / 1200 * 100) + '%'; hs.style.top = (a.pts[0][1] / 1500 * 100) + '%';
-    hs.addEventListener('click', () => toggle(a.id));
-    pmap.appendChild(hs);
   });
   function toggle(id) {
     const on = !sel.has(id); on ? sel.add(id) : sel.delete(id);
     fErr.textContent = '';
     chipsBox.querySelector(`[data-area="${id}"]`).setAttribute('aria-pressed', on);
-    const g = marks.querySelector(`[data-area="${id}"]`);
-    if (motion) {
-      gsap.to(g, { opacity: on ? 1 : 0, duration: T.mid, ease: EASE2 });
-      if (on) gsap.fromTo(g.querySelectorAll('circle'), { scale: 0 }, { scale: 1, duration: T.mid, ease: 'back.out(2.2)', stagger: STAGGER });
-    } else g.style.opacity = on ? 1 : 0;
     renderFicha(id, on);
   }
   function renderFicha(changed, on) {
@@ -782,9 +748,6 @@ document.addEventListener('DOMContentLoaded', () => {
       fAreas.appendChild(li);
       if (motion && a.id === changed && on) gsap.fromTo(li, { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: T.mid, ease: EASE });
     });
-    const total = list.reduce((n, a) => n + a.pts.length, 0);
-    if (motion) { const o = { v: +fCount.textContent }; gsap.to(o, { v: total, duration: T.mid, ease: EASE, onUpdate: () => { fCount.textContent = Math.round(o.v); } }); }
-    else fCount.textContent = total;
   }
   nome.addEventListener('input', () => {
     const v = nome.value.trim(); fNome.textContent = v || '—'; fNome.classList.toggle('ficha__empty', !v);

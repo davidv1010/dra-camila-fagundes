@@ -1,0 +1,576 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dra. Camila Fagundes | Harmonização Facial em Igarapé - MG</title>
+<meta name="description" content="Harmonização facial, botox, lábios e bioestimulador em Igarapé - MG. Veja os resultados e agende sua avaliação.">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f2f1ef;
+    --surface: #e4e1de;
+    --ink: #241f1d;
+    --muted: #675d58;
+    --accent: #6e4743;
+    --accent-hover: #5a3835;
+    --accent-ink: #ffffff;
+    --night: #1d1918;
+    --night-surface: #2c2624;
+    --night-ink: #ecebe9;
+    --night-muted: #a59b95;
+
+    --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+    --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+    --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+    --step-head: clamp(2rem, 1.3rem + 3.2vw, 4rem);
+
+    --m: clamp(16px, 4vw, 56px);
+    --gap: clamp(12px, 1.6vw, 24px);
+    --ease: cubic-bezier(.22, 1, .36, 1);
+    --font: "Clash Grotesk", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--font); font-size: var(--step-body); line-height: 1.4; -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .grid { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gap); padding-inline: var(--m); }
+  h1, h2 { font-weight: 400; letter-spacing: -0.03em; line-height: 0.95; }
+  h2 { font-size: var(--step-head); }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 24px; background: var(--accent); color: var(--accent-ink); text-decoration: none; font-size: var(--step-body); font-weight: 500; transition: background .25s var(--ease), transform .15s var(--ease); }
+  .btn:hover { background: var(--accent-hover); }
+  .btn:active { transform: scale(.97); }
+  .link { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; transition: color .2s; }
+  .link:hover { color: var(--accent); }
+
+  /* Photo slots: drop real photos into /fotos with these names */
+  .photo { position: relative; overflow: hidden; background: var(--surface); }
+  .photo img { position: relative; width: 100%; height: 100%; object-fit: cover; }
+  .photo .ph { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); font-size: var(--step-small); text-align: center; padding: 12px; }
+  figcaption { margin-top: 12px; font-size: var(--step-body); color: var(--muted); }
+
+  /* Hero: two prints in darkness */
+  .hero { background: var(--night); color: var(--night-ink); min-height: 100svh; grid-template-rows: auto 1fr auto; padding-top: 22px; padding-bottom: clamp(28px, 4vw, 48px); row-gap: 24px; }
+  .hero .photo { background: var(--night-surface); }
+  .hero .photo .ph, .hero figcaption { color: var(--night-muted); }
+  nav { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  nav .left { display: flex; align-items: baseline; gap: clamp(20px, 3vw, 44px); }
+  .wordmark { font-weight: 500; font-size: var(--step-body); text-decoration: none; letter-spacing: -0.01em; }
+  nav .left a:not(.wordmark) { font-size: var(--step-small); color: var(--night-muted); text-decoration: none; transition: color .2s; }
+  nav .left a:not(.wordmark):hover { color: var(--night-ink); }
+  nav .btn { background: var(--night-ink); color: var(--night); min-height: 42px; padding: 0 18px; font-size: var(--step-small); }
+  nav .btn:hover { background: #fff; }
+
+  .prints { grid-column: 2 / 10; grid-row: 2 / 4; display: grid; grid-template-columns: repeat(8, 1fr); column-gap: var(--gap); align-items: start; }
+  .prints .small { grid-column: 1 / 3; margin-top: 34vh; }
+  .prints .small .photo { aspect-ratio: 1; filter: brightness(.7); }
+  .prints .large { grid-column: 5 / 9; margin-top: 4vh; }
+  .prints .large .photo { aspect-ratio: 4 / 5; }
+  .fade img, .fade .ph { transition: opacity 1.6s ease; }
+  .fade .layer { position: absolute; inset: 0; opacity: 0; transition: opacity 1.6s ease; }
+  .fade .layer.on { opacity: 1; }
+  .fade .layer img { width: 100%; height: 100%; object-fit: cover; }
+
+  .hero h1 { grid-column: 1 / 6; grid-row: 3; align-self: end; font-size: var(--step-head); max-width: 11ch; }
+  .hero .pitch { grid-column: 10 / 13; grid-row: 3; align-self: end; max-width: 24ch; }
+  .hero .pitch p { color: var(--night-ink); margin-bottom: 22px; }
+
+  /* Gallery: staggered before/after pairs */
+  .results { padding-top: clamp(96px, 14vw, 200px); padding-bottom: clamp(96px, 14vw, 200px); row-gap: 0; align-items: start; }
+  .results header { grid-column: 1 / 7; margin-bottom: clamp(48px, 7vw, 96px); }
+  .results header p { margin-top: 20px; max-width: 34ch; }
+  .case { grid-row: auto; }
+  .c1 { grid-column: 1 / 5; grid-row: 2; }
+  .c2 { grid-column: 7 / 13; grid-row: 2; margin-top: 30vh; }
+  .c3 { grid-column: 6 / 12; grid-row: 3; margin-top: 22vh; }
+  .c4 { grid-column: 2 / 5; grid-row: 3; margin-top: 46vh; }
+  .c1 .ba { aspect-ratio: 3 / 4; }
+  .c2 .ba { aspect-ratio: 5 / 4; }
+  .c3 .ba { aspect-ratio: 3 / 2; }
+  .c4 .ba { aspect-ratio: 4 / 5; }
+  /* Keep the subject in frame when photos are cropped */
+  .c1 .ba img, .c4 .ba img { object-position: 50% 30%; }
+  .c2 .ba img, .prints .photo img { object-position: 68% 50%; }
+  .c3 .ba img { object-position: 30% 50%; }
+  footer .bgimg img { object-position: 50% 22%; }
+  .results .more { grid-column: 6 / 13; grid-row: 4; margin-top: clamp(56px, 8vw, 120px); display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
+
+  /* Before/after comparer (the live thing) */
+  .ba { position: relative; overflow: hidden; --pos: 50%; touch-action: pan-y; }
+  .ba .photo { position: absolute; inset: 0; }
+  .ba .after { clip-path: inset(0 0 0 var(--pos)); background: #d6d2ce; }
+  .ba .bar { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; margin-left: -1px; background: #fff; pointer-events: none; }
+  .ba .knob { position: absolute; top: 50%; left: var(--pos); width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%; background: #fff; color: var(--ink); display: grid; place-items: center; font-size: 15px; pointer-events: none; transition: transform .2s var(--ease); }
+  .ba:hover .knob { transform: scale(1.08); }
+  .ba input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
+  .ba input:focus-visible ~ .knob { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .ba .tag { position: absolute; top: 12px; z-index: 1; font-size: var(--step-small); color: var(--ink); background: rgba(242,241,239,.88); padding: 3px 10px; pointer-events: none; }
+  .ba .tag.l { left: 12px; }
+  .ba .tag.r { right: 12px; }
+
+  /* Procedures: statement, table pushed right */
+  .procs { background: var(--surface); padding-top: clamp(96px, 12vw, 180px); padding-bottom: clamp(96px, 12vw, 180px); }
+  .procs h2 { grid-column: 1 / -1; text-indent: 3vw; }
+  .procs .name { grid-column: 1 / 4; grid-row: 2; margin-top: 96px; font-size: var(--step-small); color: var(--muted); }
+  .procs ul { grid-column: 5 / 13; grid-row: 2; margin-top: 96px; list-style: none; }
+  .procs li + li { margin-top: 6px; }
+  .procs li:nth-child(4) { margin-top: 30px; }
+  .procs li a { display: grid; grid-template-columns: 30% 1fr auto; align-items: baseline; gap: 12px; padding: 12px 0; text-decoration: none; transition: color .2s, transform .3s var(--ease); }
+  .procs li a:hover { color: var(--accent); transform: translateX(6px); }
+  .procs li .kind { color: var(--muted); font-size: var(--step-small); }
+  .procs li .what { font-size: var(--step-lead); letter-spacing: -0.01em; }
+  .procs li .go { font-size: var(--step-small); color: var(--accent); white-space: nowrap; }
+
+  /* About: paragraph in the gap, one small square photo */
+  .about { padding-top: clamp(96px, 12vw, 180px); padding-bottom: clamp(96px, 14vw, 200px); align-items: start; }
+  .about .text { grid-column: 2 / 7; }
+  .about h2 { margin-bottom: 32px; }
+  .about .text p { max-width: 40ch; }
+  .about .text p + p { margin-top: 16px; }
+  .about .facts { list-style: none; margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .about .facts strong { display: block; font-size: var(--step-lead); font-weight: 400; letter-spacing: -0.01em; }
+  .about .facts span { font-size: var(--step-small); color: var(--muted); }
+  .about figure { grid-column: 8 / 12; }
+  .about figure .photo { aspect-ratio: 3 / 4; }
+  .about figure .photo img { object-position: 60% 30%; }
+
+  /* FAQ: heading left, answers right */
+  .faq { padding-top: clamp(96px, 12vw, 180px); align-items: start; }
+  .faq h2 { grid-column: 1 / 6; }
+  .faq .list { grid-column: 7 / 13; }
+  .faq details { background: var(--surface); transition: background .25s; }
+  .faq details + details { margin-top: 8px; }
+  .faq details[open] { background: #ebe8e5; }
+  .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 16px; padding: 20px 24px; font-size: var(--step-body); font-weight: 500; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; color: var(--accent); transition: transform .3s var(--ease); }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq summary:hover { color: var(--accent); }
+  .faq details p { padding: 0 24px 22px; max-width: 52ch; }
+
+  /* CTA: a plain sentence, one action */
+  .cta { padding-top: clamp(96px, 16svh, 180px); padding-bottom: clamp(96px, 16svh, 180px); }
+  .cta div { grid-column: 2 / 8; }
+  .cta h2 { font-size: var(--step-lead); letter-spacing: -0.01em; line-height: 1.3; max-width: 34ch; margin-bottom: 24px; }
+  .cta .row { display: flex; align-items: center; flex-wrap: wrap; gap: 16px 28px; }
+
+  /* Footer: name across the last photograph */
+  footer { position: relative; min-height: 100svh; color: var(--night-ink); background: var(--night); overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 32px var(--m) 40px; }
+  footer .bgimg { position: absolute; inset: 0; background: var(--night-surface); }
+  footer .bgimg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.62); animation: drift 30s ease-in-out infinite alternate; }
+  footer .bgimg .ph { position: absolute; inset: 0; display: grid; place-items: center; color: var(--night-muted); font-size: var(--step-small); }
+  @keyframes drift { from { transform: scale(1); } to { transform: scale(1.08); } }
+  footer > * { position: relative; }
+  footer .top { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  footer .top ul { list-style: none; display: grid; gap: 6px; }
+  footer .top a { text-decoration: none; transition: opacity .2s; }
+  footer .top a:hover { opacity: .7; }
+  footer .top .contact { text-align: right; color: var(--night-muted); }
+  footer .big { font-size: 11.6vw; font-weight: 400; letter-spacing: -0.04em; line-height: .85; white-space: nowrap; margin-bottom: 14px; }
+  footer .legal { font-size: var(--step-small); color: var(--night-muted); }
+
+  .sticky { display: none; }
+
+  /* Band of procedure names */
+  .band { background: var(--accent); color: var(--accent-ink); overflow: hidden; padding: clamp(20px, 3vw, 36px) 0; }
+  .band .track { display: flex; width: max-content; animation: marquee 38s linear infinite; }
+  .band:hover .track { animation-play-state: paused; }
+  .band span { font-size: var(--step-head); letter-spacing: -0.03em; line-height: 1; padding-right: 0.9em; white-space: nowrap; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  /* FAQ opens smoothly where the browser supports it */
+  :root { interpolate-size: allow-keywords; }
+  .faq details::details-content { height: 0; overflow: hidden; transition: height .45s var(--ease), content-visibility .45s allow-discrete; }
+  .faq details[open]::details-content { height: auto; }
+
+  /* ---------- Motion (content stays visible without script) ---------- */
+  @property --pos { syntax: "<percentage>"; inherits: true; initial-value: 50%; }
+
+  /* Section entrances: each child rises in turn (JS sets --i) */
+  .js [data-rise] > * { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease), transform .9s var(--ease); transition-delay: calc(var(--i, 0) * 80ms); }
+  .js [data-rise].in > * { opacity: 1; transform: none; }
+
+  /* Hero intro on load */
+  .js .hero nav, .js .hero .pitch, .js .prints figcaption { opacity: 0; transform: translateY(14px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+  .js .hero h1 .ln { display: block; overflow: hidden; padding-bottom: .06em; margin-bottom: -.06em; }
+  .js .hero h1 .ln > span { display: block; transform: translateY(110%); transition: transform 1.2s var(--ease); }
+  .js .prints .photo { clip-path: inset(100% 0 0 0); transition: clip-path 1.5s var(--ease); }
+  .js .prints .photo img, .js .prints .photo .layer { transform: scale(1.18); transition: transform 2.2s var(--ease), opacity 1.6s ease; }
+  .loaded .hero nav { opacity: 1; transform: none; }
+  .loaded .hero h1 .ln > span { transform: none; }
+  .loaded .hero h1 .ln:nth-child(2) > span { transition-delay: .12s; }
+  .loaded .prints .photo { clip-path: inset(0); }
+  .loaded .prints .large .photo { transition-delay: .25s; }
+  .loaded .prints .small .photo { transition-delay: .6s; }
+  .loaded .prints .photo img, .loaded .prints .photo .layer { transform: none; }
+  .loaded .hero .pitch { opacity: 1; transform: none; transition-delay: .5s; }
+  .loaded .prints figcaption { opacity: 1; transform: none; transition-delay: 1.1s; }
+  .prints figure { will-change: transform; }
+
+  /* Results: each comparer wipes up from the bottom, then sweeps once to show it can be dragged */
+  .js .case[data-rise] > .ba { opacity: 1; transform: none; clip-path: inset(100% 0 0 0); transition: clip-path 1.3s var(--ease); }
+  .js .case[data-rise].in > .ba { clip-path: inset(0); }
+  .js .case .ba .photo img { transform: scale(1.12); transition: transform 1.8s var(--ease); }
+  .js .case.in .ba .photo img { transform: none; }
+  .ba.hint { animation: sweep 2.6s var(--ease); }
+  @keyframes sweep { 0% { --pos: 50%; } 30% { --pos: 24%; } 70% { --pos: 76%; } 100% { --pos: 50%; } }
+
+  /* Procedure rows: arrow nudges on hover */
+  .procs li .go { transition: transform .3s var(--ease); }
+  .procs li a:hover .go { transform: translateX(4px); }
+
+  /* Footer wordmark: letters rise in turn */
+  footer .big { overflow: hidden; line-height: 1.05; padding-bottom: .16em; margin-bottom: -.06em; }
+  footer .big .ch { display: inline-block; white-space: pre; }
+  .js footer .big .ch { transform: translateY(105%); transition: transform 1.1s var(--ease); transition-delay: calc(var(--i, 0) * 35ms); }
+  .js footer.in .big .ch { transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .js [data-rise] > *, .js .hero nav, .js .hero .pitch, .js .prints figcaption, .js .hero h1 .ln > span, .js footer .big .ch { opacity: 1; transform: none; transition: none; }
+    .js .prints .photo, .js .case[data-rise] > .ba { clip-path: none; transition: none; }
+    .js .prints .photo img, .js .prints .photo .layer, .js .case .ba .photo img { transform: none; transition: none; }
+    .ba.hint { animation: none; }
+    .band .track { animation: none; }
+    footer .bgimg img { animation: none; }
+    .fade .layer { transition: none; }
+    .faq details::details-content { transition: none; }
+  }
+
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr; }
+    .grid > * { grid-column: 1 / -1 !important; grid-row: auto !important; }
+    nav .left a:not(.wordmark) { display: none; }
+    .hero { grid-template-rows: auto; row-gap: 0; }
+    .prints { display: block; position: relative; margin: 32px 0 64px; }
+    .prints .large { width: 78%; margin: 0 0 0 auto; }
+    .prints .small { position: absolute; left: 0; bottom: -24px; width: 34%; margin: 0; z-index: 1; }
+    .prints figcaption { display: none; }
+    .hero h1 { font-size: clamp(2rem, 8vw, 3rem); margin-bottom: 14px; }
+    .hero .pitch { max-width: none; }
+    .hero .pitch p { margin-bottom: 20px; }
+    .results header { margin-bottom: 40px; }
+    .case { margin-top: 56px !important; }
+    .c1 { width: 90%; }
+    .c2 { width: 100%; }
+    .c3 { width: 100%; }
+    .c4 { width: 90%; margin-left: auto; }
+    .c1 { margin-top: 0 !important; }
+    .c1 .ba, .c4 .ba { aspect-ratio: 4 / 5; }
+    .c2 .ba, .c3 .ba { aspect-ratio: 1; }
+    .results .more { margin-top: 48px; }
+    .results .more .btn { width: 100%; }
+    .about { padding-top: 72px; }
+    .about figure { width: 72%; margin: 48px 0 0 auto; }
+    .about .facts { grid-template-columns: 1fr 1fr; }
+    .faq .list { margin-top: 40px; }
+    .faq summary { padding: 18px 18px; }
+    .faq details p { padding: 0 18px 20px; }
+    .procs h2 { text-indent: 0; }
+    .procs .name { display: none; }
+    .procs ul { margin-top: 48px; }
+    .procs li a { grid-template-columns: 1fr auto; row-gap: 2px; }
+    .procs li .kind { grid-column: 1 / -1; }
+    .cta { padding-top: 20svh; padding-bottom: 14svh; }
+    footer { min-height: 72svh; }
+    footer .top .contact { text-align: left; }
+    footer .top ul { gap: 0; }
+    footer .top a { display: inline-block; padding: 8px 0; }
+  }
+  @media (max-width: 560px) {
+    body { padding-bottom: 76px; }
+    .hero { padding-bottom: 88px; }
+    .hero .pitch .btn { width: 100%; }
+    footer { padding-bottom: 88px; }
+    .cta .btn { width: 100%; }
+    .sticky { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: var(--bg); }
+    .sticky .btn { width: 100%; }
+    .sticky { transition: transform .45s var(--ease); }
+    .js .sticky:not(.show), .sticky.away { transform: translateY(110%); }
+    nav .btn { min-height: 38px; padding: 0 14px; }
+  }
+
+  /* ---------- Accessibility ---------- */
+  .skip { position: fixed; left: 16px; top: -80px; z-index: 40; background: var(--ink); color: var(--bg); padding: 12px 18px; text-decoration: none; font-size: 16px; transition: top .2s; }
+  .skip:focus { top: 16px; }
+
+</style>
+</head>
+<body>
+<a class="skip" href="#resultados">Pular para os resultados</a>
+<main>
+
+<section class="grid hero">
+  <nav>
+    <div class="left">
+      <a class="wordmark" href="#">Camila Fagundes</a>
+      <a href="#resultados">Resultados</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#procedimentos">Procedimentos</a>
+      <a href="#duvidas">Dúvidas</a>
+    </div>
+    <a class="btn" href="https://wa.me/5531971059010?text=Ol%C3%A1%2C%20Dra.%20Camila!%20Vi%20o%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener">Agendar</a>
+  </nav>
+
+  <div class="prints" aria-label="Antes e depois de uma paciente">
+    <figure class="small">
+      <div class="photo fade" data-set="antes"><span class="ph">fotos/caso-1-antes.jpg</span><img src="fotos/caso-1-antes.jpg" alt="Antes" onerror="this.remove()"></div>
+      <figcaption>Antes</figcaption>
+    </figure>
+    <figure class="large">
+      <div class="photo fade" data-set="depois"><span class="ph">fotos/caso-1-depois.jpg</span><img src="fotos/caso-1-depois.jpg" alt="Depois" onerror="this.remove()"></div>
+      <figcaption>Depois</figcaption>
+    </figure>
+  </div>
+
+  <h1><span class="ln"><span>Harmonização</span></span> <span class="ln"><span>facial em Igarapé</span></span></h1>
+  <div class="pitch">
+    <p>Botox, lábios e bioestimulador com resultado natural. Veja o antes e depois e agende sua avaliação.</p>
+    <a class="btn" href="https://wa.me/5531971059010?text=Ol%C3%A1%2C%20Dra.%20Camila!%20Vi%20o%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener">Agendar avaliação</a>
+  </div>
+</section>
+
+<section class="grid results" id="resultados">
+  <header data-rise>
+    <h2>Arraste e veja a diferença</h2>
+    <p>Resultados de pacientes, sem filtro. Deslize sobre cada foto para comparar o antes e o depois.</p>
+  </header>
+
+  <figure class="case c1" data-rise>
+    <div class="ba">
+      <div class="photo"><span class="ph">fotos/caso-2-antes.jpg</span><img src="fotos/caso-2-antes.jpg" alt="Botox, antes: linhas de expressão na testa" onerror="this.remove()"></div>
+      <div class="photo after"><span class="ph">fotos/caso-2-depois.jpg</span><img src="fotos/caso-2-depois.jpg" alt="Botox, depois: testa lisa" onerror="this.remove()"></div>
+      <span class="tag l">Antes</span><span class="tag r">Depois</span>
+      <input type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois: botox">
+      <span class="bar"></span><span class="knob" aria-hidden="true">↔</span>
+    </div>
+    <figcaption>Botox, adeus às linhas de expressão</figcaption>
+  </figure>
+
+  <figure class="case c2" data-rise>
+    <div class="ba">
+      <div class="photo"><span class="ph">fotos/caso-1-antes.jpg</span><img src="fotos/caso-1-antes.jpg" alt="Rinomodelação, antes: irregularidade no dorso do nariz" onerror="this.remove()"></div>
+      <div class="photo after"><span class="ph">fotos/caso-1-depois.jpg</span><img src="fotos/caso-1-depois.jpg" alt="Rinomodelação, depois: perfil do nariz alinhado" onerror="this.remove()"></div>
+      <span class="tag l">Antes</span><span class="tag r">Depois</span>
+      <input type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois: rinomodelação">
+      <span class="bar"></span><span class="knob" aria-hidden="true">↔</span>
+    </div>
+    <figcaption>Rinomodelação, perfil alinhado sem cirurgia</figcaption>
+  </figure>
+
+  <figure class="case c3" data-rise>
+    <div class="ba">
+      <div class="photo"><span class="ph">fotos/caso-3-antes.jpg</span><img src="fotos/caso-3-antes.jpg" alt="Lábios, antes: perfil com lábios finos" loading="lazy" onerror="this.remove()"></div>
+      <div class="photo after"><span class="ph">fotos/caso-3-depois.jpg</span><img src="fotos/caso-3-depois.jpg" alt="Lábios, depois: perfil com lábios mais projetados e hidratados" loading="lazy" onerror="this.remove()"></div>
+      <span class="tag l">Antes</span><span class="tag r">Depois</span>
+      <input type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois: lábios">
+      <span class="bar"></span><span class="knob" aria-hidden="true">↔</span>
+    </div>
+    <figcaption>Lábios, perfil com contorno e volume</figcaption>
+  </figure>
+
+  <figure class="case c4" data-rise>
+    <div class="ba">
+      <div class="photo"><span class="ph">fotos/caso-4-antes.jpg</span><img src="fotos/caso-4-antes.jpg" alt="Harmonização facial, antes" loading="lazy" onerror="this.remove()"></div>
+      <div class="photo after"><span class="ph">fotos/caso-4-depois.jpg</span><img src="fotos/caso-4-depois.jpg" alt="Harmonização facial, depois" loading="lazy" onerror="this.remove()"></div>
+      <span class="tag l">Antes</span><span class="tag r">Depois</span>
+      <input type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois: harmonização facial">
+      <span class="bar"></span><span class="knob" aria-hidden="true">↔</span>
+    </div>
+    <figcaption>Harmonização facial, sutileza e equilíbrio</figcaption>
+  </figure>
+
+  <div class="more" data-rise>
+    <a class="btn" href="https://wa.me/5531971059010?text=Ol%C3%A1%2C%20Dra.%20Camila!%20Vi%20o%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener">Quero um resultado assim</a>
+    <a class="link" href="https://www.instagram.com/dra.camilafagundes/" target="_blank" rel="noopener">Mais casos no Instagram</a>
+  </div>
+</section>
+
+<div class="band" aria-hidden="true">
+  <div class="track">
+    <span>Botox</span><span>Lábios</span><span>Harmonização facial</span><span>Bioestimulador</span><span>Preenchimento</span><span>Hipro</span>
+    <span>Botox</span><span>Lábios</span><span>Harmonização facial</span><span>Bioestimulador</span><span>Preenchimento</span><span>Hipro</span>
+  </div>
+</div>
+
+<section class="grid about" id="sobre">
+  <div class="text" data-rise>
+    <h2>Prazer, Dra. Camila Fagundes</h2>
+    <p>Atendo em Igarapé com um objetivo: que você se olhe no espelho e se reconheça, só que mais descansada, mais definida e mais confiante.</p>
+    <p>Tudo começa com uma avaliação do seu rosto e do que você deseja. Só indico o que faz sentido para você, na dose certa.</p>
+    <ul class="facts">
+      <li><strong>Avaliação individual</strong><span>Plano feito para o seu rosto</span></li>
+      <li><strong>Resultado natural</strong><span>Sem exageros, sem “cara de feito”</span></li>
+      <li><strong>Hora marcada</strong><span>Atendimento com calma em Igarapé</span></li>
+      <li><strong>+6,7 mil</strong><span>pessoas acompanham no Instagram</span></li>
+    </ul>
+  </div>
+  <figure data-rise>
+    <div class="photo"><span class="ph">fotos/dra-camila.jpg</span><img src="fotos/dra-camila.jpg" alt="Dra. Camila Fagundes" loading="lazy" onerror="this.remove()"></div>
+    <figcaption>Dra. Camila Fagundes, Igarapé – MG</figcaption>
+  </figure>
+</section>
+
+<section class="grid procs" id="procedimentos">
+  <h2 data-rise><span>Escolha o seu procedimento</span></h2>
+  <span class="name">Procedimentos</span>
+  <ul data-rise>
+    <li><a href="https://wa.me/5531971059010?text=Ol%C3%A1%2C%20Dra.%20Camila!%20Vi%20o%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20Botox." target="_blank" rel="noopener"><span class="kind">Linhas de expressão</span><span class="what">Botox</span><span class="go">Agendar →</span></a></li>
+    <li><a href="https://wa.me/5531971059010?text=Ol%C3%A1%2C%20Dra.%20Camila!%20Vi%20o%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20L%C3%A1bios." target="_blank" rel="noopener"><span class="kind">Contorno e volume</span><span class="what">Lábios</span><span class="go">Agendar →</span></a></li>
+    <li><a href="https://wa.me/5531971059010?text=Ol%C3%A1%2C%20Dra.%20Camila!%20Vi%20o%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20Harmoniza%C3%A7%C3%A3o%20facial." target="_blank" rel="noopener"><span class="kind">Rosto inteiro</span><span class="what">Harmonização facial</span><span class="go">Agendar →</span></a></li>
+    <li><a href="https://wa.me/5531971059010?text=Ol%C3%A1%2C%20Dra.%20Camila!%20Vi%20o%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20Bioestimulador." target="_blank" rel="noopener"><span class="kind">Firmeza da pele</span><span class="what">Bioestimulador</span><span class="go">Agendar →</span></a></li>
+    <li><a href="https://wa.me/5531971059010?text=Ol%C3%A1%2C%20Dra.%20Camila!%20Vi%20o%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20Preenchimento." target="_blank" rel="noopener"><span class="kind">Olheiras, mandíbula, queixo</span><span class="what">Preenchimento</span><span class="go">Agendar →</span></a></li>
+    <li><a href="https://wa.me/5531971059010?text=Ol%C3%A1%2C%20Dra.%20Camila!%20Vi%20o%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20Hipro." target="_blank" rel="noopener"><span class="kind">Viço e hidratação</span><span class="what">Hipro</span><span class="go">Agendar →</span></a></li>
+  </ul>
+</section>
+
+<section class="grid faq" id="duvidas">
+  <h2 data-rise><span>Dúvidas frequentes</span></h2>
+  <div class="list" data-rise>
+    <details>
+      <summary>Dói?</summary>
+      <p>O desconforto é mínimo. Usamos anestésico tópico e, nos preenchimentos, produtos que já têm anestésico na fórmula. A maioria das pacientes descreve como uma leve picada.</p>
+    </details>
+    <details>
+      <summary>Vai ficar artificial?</summary>
+      <p>Não. O planejamento é feito para realçar os seus traços, não para mudar quem você é. Começamos pelo necessário e ajustamos no retorno, se for preciso.</p>
+    </details>
+    <details>
+      <summary>Quanto tempo dura?</summary>
+      <p>Depende do procedimento e do organismo de cada pessoa. Em média, o botox dura de 4 a 6 meses, o preenchimento com ácido hialurônico de 9 a 18 meses e o bioestimulador até 2 anos.</p>
+    </details>
+    <details>
+      <summary>Quando vejo o resultado?</summary>
+      <p>O preenchimento aparece na hora e se acomoda em até 15 dias. O botox começa a agir entre 3 e 7 dias. O bioestimulador melhora a pele aos poucos, ao longo de semanas.</p>
+    </details>
+    <details>
+      <summary>Posso voltar à rotina no mesmo dia?</summary>
+      <p>Sim, na maioria dos casos. Você recebe todas as orientações de cuidados depois do procedimento, como evitar exercícios intensos e sol forte nas primeiras horas.</p>
+    </details>
+    <details>
+      <summary>Como funciona a avaliação?</summary>
+      <p>Você agenda pelo WhatsApp, conversamos sobre o que te incomoda, eu analiso o seu rosto e indico o plano ideal, com valores e prazos, sem compromisso.</p>
+    </details>
+  </div>
+</section>
+
+<section class="grid cta">
+  <div data-rise>
+    <h2>Me mande uma mensagem e encontramos juntas o melhor horário para a sua avaliação.</h2>
+    <div class="row">
+      <a class="btn" href="https://wa.me/5531971059010?text=Ol%C3%A1%2C%20Dra.%20Camila!%20Vi%20o%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener">Agendar avaliação</a>
+      <a class="link" href="https://www.instagram.com/dra.camilafagundes/" target="_blank" rel="noopener">@dra.camilafagundes</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="bgimg"><span class="ph">fotos/rodape.jpg</span><img src="fotos/rodape.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+  <div class="top">
+    <ul>
+      <li><a href="#resultados">Resultados</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#procedimentos">Procedimentos</a></li>
+      <li><a href="#duvidas">Dúvidas</a></li>
+      <li><a href="https://www.instagram.com/dra.camilafagundes/" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="https://wa.me/5531971059010?text=Ol%C3%A1%2C%20Dra.%20Camila!%20Vi%20o%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener">Agendar</a></li>
+    </ul>
+    <p class="contact">Igarapé, Minas Gerais<br>Atendimento com hora marcada</p>
+  </div>
+  <div>
+    <p class="big" aria-hidden="true">Camila Fagundes</p>
+    <p class="legal">© <span id="y"></span> Dra. Camila Fagundes · Harmonização facial</p>
+  </div>
+</footer>
+
+<div class="sticky"><a class="btn" href="https://wa.me/5531971059010?text=Ol%C3%A1%2C%20Dra.%20Camila!%20Vi%20o%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener">Agendar avaliação</a></div>
+
+<script>
+  document.documentElement.classList.add('js');
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const still = () => reduce;
+
+  // Hero intro
+  requestAnimationFrame(() => requestAnimationFrame(() => document.documentElement.classList.add('loaded')));
+
+  // Footer wordmark split into letters
+  const big = document.querySelector('footer .big');
+  big.innerHTML = [...big.textContent].map((c, i) => `<span class="ch" style="--i:${i}">${c}</span>`).join('');
+
+  // Entrances: stagger the children of each block
+  document.querySelectorAll('[data-rise]').forEach(el => [...el.children].forEach((c, i) => c.style.setProperty('--i', i)));
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('in');
+    io.unobserve(e.target);
+    // Show the comparer can be dragged once it has wiped in
+    const ba = e.target.querySelector('.ba');
+    if (ba && !still()) setTimeout(() => { if (!ba.dataset.touched && !still()) ba.classList.add('hint'); }, 1100);
+  }), { threshold: .15 });
+  document.querySelectorAll('[data-rise], footer').forEach(el => io.observe(el));
+
+  // Phone booking bar: slides in after the first screen, hides over the footer
+  const sticky = document.querySelector('.sticky');
+  const hero = document.querySelector('.hero');
+  new IntersectionObserver(([e]) => sticky.classList.toggle('show', !e.isIntersecting), { threshold: .35 }).observe(hero);
+  new IntersectionObserver(([e]) => sticky.classList.toggle('away', e.isIntersecting)).observe(document.querySelector('footer'));
+
+  // Before/after comparers
+  document.querySelectorAll('.ba input').forEach(r => {
+    const ba = r.parentElement;
+    const set = () => ba.style.setProperty('--pos', r.value + '%');
+    r.addEventListener('input', set);
+    r.addEventListener('pointerdown', () => { ba.dataset.touched = 1; ba.classList.remove('hint'); });
+    ba.addEventListener('animationend', () => ba.classList.remove('hint'));
+    set();
+  });
+
+  // Hero prints drift at different speeds while scrolling
+  if (!reduce) {
+    const large = document.querySelector('.prints .large'), small = document.querySelector('.prints .small');
+    let ticking = false;
+    addEventListener('scroll', () => {
+      if (ticking || still()) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = Math.min(scrollY, innerHeight * 1.2);
+        large.style.transform = `translateY(${y * -0.12}px)`;
+        small.style.transform = `translateY(${y * -0.28}px)`;
+        ticking = false;
+      });
+    }, { passive: true });
+  }
+
+  // Hero: crossfade through cases 1-3 (only the photos that exist)
+  const cases = [2, 4];
+  const slots = [...document.querySelectorAll('.fade')];
+  const layers = slots.map(slot => cases.map(n => {
+    const d = document.createElement('div');
+    d.className = 'layer';
+    const img = new Image();
+    img.alt = '';
+    img.src = `fotos/caso-${n}-${slot.dataset.set}.jpg`;
+    img.onerror = () => d.remove();
+    d.appendChild(img);
+    slot.appendChild(d);
+    return d;
+  }));
+  let i = -1, timer;
+  const tick = () => {
+    if (document.hidden || still()) return;
+    i = (i + 1) % (cases.length + 1);
+    layers.forEach(ls => ls.forEach((l, k) => l.classList.toggle('on', k === i - 1)));
+  };
+  timer = setInterval(tick, 5600);
+</script>
+</body>
+</html>

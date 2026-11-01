@@ -161,9 +161,6 @@ button, input { font: inherit; color: inherit; }
 .ln > span { display: block; }
 .hero__slogan { font-family: var(--serif); font-style: italic; font-size: clamp(1.4rem, 1.1rem + 1vw, 1.8rem); color: var(--rose-ink); margin-bottom: 14px; }
 .hero__ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
-.hero__proof { display: flex; gap: 40px; margin-top: 44px; padding-top: 24px; border-top: 1px solid rgba(184, 151, 106, .45); max-width: 460px; }
-.hero__proof strong { display: block; font-family: var(--serif); font-size: 2rem; font-weight: 400; line-height: 1; font-variant-numeric: tabular-nums; }
-.hero__proof > div > span { font-size: .82rem; color: var(--taupe); }
 .hero__media { grid-column: 8 / 13; position: relative; }
 .hero__media .photo { box-shadow: 0 30px 60px -30px rgba(59, 47, 43, .35); }
 .seal { position: absolute; left: -64px; bottom: 56px; width: 136px; height: 136px; border-radius: 50%; background: var(--off-white); display: grid; place-items: center; box-shadow: 0 18px 40px -18px rgba(59, 47, 43, .3); }
@@ -179,9 +176,6 @@ button, input { font: inherit; color: inherit; }
 .about__text { grid-column: 7 / 13; }
 .about__text .h2 { margin: 22px 0 26px; }
 .about__text p + p { margin-top: 14px; }
-.stats { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 34px 0 28px; padding: 22px 0; border-block: 1px solid rgba(184, 151, 106, .45); }
-.stats strong { display: block; font-family: var(--serif); font-size: clamp(1.9rem, 1.5rem + 1.4vw, 2.6rem); font-weight: 400; line-height: 1; font-variant-numeric: tabular-nums; }
-.stats li > span { font-size: .82rem; color: var(--taupe); line-height: 1.4; display: block; margin-top: 8px; }
 
 /* Section heads */
 .head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: clamp(40px, 5vw, 64px); }
@@ -357,10 +351,7 @@ details[open] .pm { transform: rotate(45deg); }
 @media (max-width: 560px) {
   .label { font-size: .7rem; letter-spacing: .12em; gap: 10px; }
   .label::before { width: 20px; }
-  .hero__proof { gap: 24px; }
   .hero__ctas .btn { flex: 1 1 100%; }
-  .stats { grid-template-columns: 1fr 1fr; }
-  .stats li:last-child { grid-column: 1 / -1; }
   .ficha { padding: 22px 18px; }
   .ficha__row { grid-template-columns: 90px 1fr; }
   .faq details p { padding-right: 0; }
@@ -427,10 +418,6 @@ details[open] .pm { transform: rotate(45deg); }
           <a class="btn" data-wa href="https://wa.me/5531971059010" target="_blank" rel="noopener">Agendar avaliação <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
           <a class="btn btn--ghost" href="#plano">Monte seu plano</a>
         </div>
-        <div class="hero__proof" data-hero>
-          <div><strong><span data-count="6789">6.789</span></strong><span>seguidoras no Instagram</span></div>
-          <div><strong><span data-count="6">6</span></strong><span>procedimentos faciais</span></div>
-        </div>
       </div>
       <div class="hero__media" data-hero-media>
         <div class="frame" data-hero aria-hidden="true"></div>
@@ -467,11 +454,6 @@ details[open] .pm { transform: rotate(45deg); }
         <h2 class="h2" data-reveal>Prazer, sou a <em>Dra. Camila</em></h2>
         <blockquote class="quote" data-reveal>“Biomédica esteta e completamente apaixonada pelo que faço.”</blockquote>
         <p class="measure" data-reveal>Marco o seu rosto ponto a ponto e só indico o que faz sentido para você.</p>
-        <ul class="stats" data-reveal>
-          <li><strong><span data-count="6789">6.789</span></strong><span>seguidoras</span></li>
-          <li><strong><span data-count="6">6</span></strong><span>procedimentos</span></li>
-          <li><strong><span data-count="4">4</span></strong><span>casos reais</span></li>
-        </ul>
         <p class="signature" data-reveal aria-label="Assinatura: Camila Fagundes">Camila Fagundes</p>
       </div>
     </div>
@@ -749,13 +731,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (t) { e.preventDefault(); setMenu(false); goTo(t); history.replaceState(null, '', id); }
   }));
 
-  /* "Contadores" */
-  const countUp = (el, delay = 0) => {
-    const end = +el.dataset.count;
-    if (!motion) { el.textContent = fmt(end); return; }
-    const o = { v: 0 };
-    gsap.to(o, { v: end, duration: end > 100 ? 2 : 1.2, delay, ease: 'power3.out', onUpdate: () => { el.textContent = fmt(o.v); } });
-  };
 
   /* FAQ: answer fades and rises when opened */
   document.querySelectorAll('.faq details').forEach(d => d.addEventListener('toggle', () => {
@@ -856,7 +831,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ---------- Without motion: static, complete page ---------- */
-  if (!motion) { document.querySelectorAll('[data-count]').forEach(el => el.textContent = fmt(+el.dataset.count)); return; }
+  if (!motion) return;
 
   gsap.registerPlugin(ScrollTrigger);
   const mm = gsap.matchMedia();
@@ -871,8 +846,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .fromTo('.hero__slogan, .hero .lead', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: T.mid, stagger: STAGGER }, '-=.7')
     .fromTo('[data-hero-media] .photo', { opacity: 0, scale: .94 }, { opacity: 1, scale: 1, duration: T.slow }, photoFirst ? 0 : '-=.9')
     .fromTo('[data-hero-media] .pz', { scale: 1.18 }, { scale: 1.08, duration: 1.8 }, '<')
-    .fromTo('.hero__ctas, .hero__proof', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: T.mid, stagger: STAGGER }, '-=1.2')
-    .add(() => document.querySelectorAll('.hero__proof [data-count]').forEach((el, i) => countUp(el, i * .1)), '<')
+    .fromTo('.hero__ctas', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: T.mid, stagger: STAGGER }, '-=1.2')
     .fromTo('.hero .frame', { opacity: 0, scale: .96 }, { opacity: 1, scale: 1, duration: T.slow }, '-=.8')
     .fromTo(hm.querySelector('.v'), { opacity: 0, scaleY: 0 }, { opacity: .9, scaleY: 1, duration: T.slow }, '-=.6')
     .fromTo(hm.querySelectorAll('.h'), { opacity: 0, scaleX: 0 }, { opacity: .85, scaleX: 1, duration: T.slow, stagger: .1 }, '-=.9')
@@ -926,7 +900,6 @@ document.addEventListener('DOMContentLoaded', () => {
     onEnter: els => gsap.fromTo(els, { opacity: 0, y: isDesktop() ? 28 : 16 }, { opacity: 1, y: 0, duration: T.mid + .2, ease: EASE, stagger: STAGGER, overwrite: true })
   });
   gsap.to('.cta .ln > span', { y: 0, duration: T.slow, ease: EASE, stagger: .12, scrollTrigger: { trigger: '.cta', start: 'top 70%', once: true } });
-  ScrollTrigger.create({ trigger: '.stats', start: 'top 85%', once: true, onEnter: () => document.querySelectorAll('.stats [data-count]').forEach((el, i) => countUp(el, i * .12)) });
 
   /* "Revelação do resultado" — scroll drives the divider from antes (100%) to the comparison point (50%) */
   const proxy = { v: 100 };

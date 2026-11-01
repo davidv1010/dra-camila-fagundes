@@ -210,32 +210,7 @@ button, input { font: inherit; color: inherit; }
 .is-pinned .pstep { opacity: .28; transition: opacity var(--t-mid) var(--ease-pulse); }
 .is-pinned .pstep.on { opacity: 1; }
 
-/* Resultados */
-.results__grid { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; align-items: center; }
-.results__text { grid-column: 1 / 6; }
-.results__text .h2 { margin: 18px 0 20px; }
-.tabs { display: flex; flex-wrap: wrap; gap: 10px; margin: 30px 0 24px; }
-.tab { height: 42px; padding: 0 20px; border-radius: 999px; border: 1px solid var(--cafe); background: transparent; cursor: pointer; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 500; transition: transform var(--t-fast) var(--ease-trace); }
-.tab:hover { transform: translateY(-2px); }
-.tab:active { transform: scale(.96); }
-.tab[aria-selected="true"] { background: var(--cafe); color: var(--off-white); }
-.results__cap { font-family: var(--serif); font-style: italic; font-size: 1.35rem; min-height: 2.6em; }
-.results__media { grid-column: 7 / 13; }
-.ba { --p: 50%; position: relative; aspect-ratio: 4 / 5; border-radius: var(--radius); overflow: hidden; background: var(--nude); touch-action: pan-y; box-shadow: 0 30px 60px -32px rgba(61, 40, 24, .4); }
-.ba img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--op, 50% 50%); }
-.ba__reveal { position: absolute; inset: 0; overflow: hidden; transform: translateX(var(--p)); }
-.ba__reveal img { transform: translateX(calc(var(--p) * -1)); }
-.ba__handle { position: absolute; inset: 0; transform: translateX(var(--p)); pointer-events: none; }
-.ba__handle::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--off-white); }
-.ba__knob { position: absolute; left: 0; top: 50%; width: 54px; height: 54px; margin: -27px 0 0 -27px; border-radius: 50%; background: var(--off-white); display: grid; place-items: center; box-shadow: 0 8px 22px rgba(61, 40, 24, .25); transition: transform var(--t-fast) var(--ease-trace); }
-.ba__knob svg { width: 26px; height: 12px; stroke: var(--cafe); fill: none; stroke-width: 1.5; }
-.ba:hover .ba__knob { transform: scale(1.08); }
-.ba input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; z-index: 2; }
-.ba input:focus-visible ~ .ba__handle .ba__knob { outline: 2px solid var(--cafe); outline-offset: 3px; }
-.ba__tag { position: absolute; top: 18px; z-index: 1; font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; font-weight: 500; background: rgba(255, 255, 255, .9); padding: 6px 14px; border-radius: 999px; pointer-events: none; }
-.ba__tag--a { left: 18px; } .ba__tag--b { right: 18px; }
-
-/* Monte seu plano — interactive face map */
+/* Monte seu plano */
 .planner__grid { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; align-items: start; }
 .planner__media { grid-column: 1 / 6; position: relative; max-width: 460px; width: 100%; }
 .planner__body { grid-column: 7 / 13; }
@@ -317,8 +292,8 @@ details[open] .pm { transform: rotate(45deg); }
   .nav__links, .nav .btn { display: none; }
   .burger { display: block; }
   .hero { min-height: auto; padding-top: 96px; }
-  .hero__grid, .about__grid, .results__grid, .faq__grid, .plan__grid, .planner__grid { grid-template-columns: 1fr; }
-  .hero__grid > *, .about__grid > *, .results__grid > *, .faq__grid > *, .plan__grid > *, .planner__grid > * { grid-column: 1 / -1; }
+  .hero__grid, .about__grid, .faq__grid, .plan__grid, .planner__grid { grid-template-columns: 1fr; }
+  .hero__grid > *, .about__grid > *, .faq__grid > *, .plan__grid > *, .planner__grid > * { grid-column: 1 / -1; }
   .hero__media { order: -1; margin: 0 auto 36px; width: min(84%, 420px); }
   .hero__text .label { display: none; }
   .hero__text .display { margin-top: 0; }
@@ -329,7 +304,6 @@ details[open] .pm { transform: rotate(45deg); }
   .cards::-webkit-scrollbar { display: none; }
   .card { scroll-snap-align: start; }
   .plan__media { margin: 0 auto 40px; width: min(80%, 360px); }
-  .results__media { margin-top: 36px; }
   .planner__media { margin: 0 auto 36px; width: min(86%, 400px); }
   .faq__head { margin-bottom: 30px; }
   .contact__card { position: relative; right: auto; bottom: auto; margin: -64px auto 0; width: calc(100% - 32px); padding: 26px 22px; }
@@ -364,7 +338,6 @@ details[open] .pm { transform: rotate(45deg); }
     <ul class="nav__links">
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#procedimentos">Procedimentos</a></li>
-      <li><a href="#resultados">Resultados</a></li>
       <li><a href="#plano">Seu plano</a></li>
       <li><a href="#duvidas">Dúvidas</a></li>
     </ul>
@@ -377,7 +350,6 @@ details[open] .pm { transform: rotate(45deg); }
   <ul>
     <li><a href="#sobre">Sobre</a></li>
     <li><a href="#procedimentos">Procedimentos</a></li>
-    <li><a href="#resultados">Resultados</a></li>
     <li><a href="#plano">Monte seu plano</a></li>
     <li><a href="#duvidas">Dúvidas</a></li>
     <li><a href="#contato">Contato</a></li>
@@ -493,33 +465,6 @@ details[open] .pm { transform: rotate(45deg); }
     </div>
   </section>
 
-  <!-- RESULTADOS — "Revelação do resultado" (scroll-linked) -->
-  <section class="section" id="resultados">
-    <div class="container results__grid">
-      <div class="results__text">
-        <span class="label" data-reveal>Resultados reais</span>
-        <h2 class="h2" data-reveal>Role e veja <em>a diferença</em></h2>
-        <p class="muted" data-reveal>Pacientes reais, sem filtro. Arraste para comparar.</p>
-        <div class="tabs" role="tablist" aria-label="Escolha o procedimento" data-reveal>
-          <button class="tab" role="tab" aria-selected="true" data-case="0">Botox</button>
-          <button class="tab" role="tab" aria-selected="false" data-case="1">Rinomodelação</button>
-          <button class="tab" role="tab" aria-selected="false" data-case="2">Lábios</button>
-          <button class="tab" role="tab" aria-selected="false" data-case="3">Harmonização</button>
-        </div>
-        <p class="results__cap" aria-live="polite" data-reveal>Botox · suavização das linhas entre as sobrancelhas</p>
-        <a class="btn" data-reveal data-wa href="https://wa.me/5531971059010" target="_blank" rel="noopener" style="margin-top:20px">Quero um resultado assim <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
-      </div>
-      <div class="results__media" data-reveal>
-        <div class="ba" id="ba">
-          <img id="ba-a" src="fotos/caso-2-antes.jpg" alt="Antes: Botox" loading="lazy">
-          <div class="ba__reveal"><img id="ba-b" src="fotos/caso-2-depois.jpg" alt="Depois: Botox" loading="lazy"></div>
-          <span class="ba__tag ba__tag--a">Antes</span><span class="ba__tag ba__tag--b">Depois</span>
-          <input type="range" min="0" max="100" value="50" step="1" aria-label="Comparar antes e depois">
-          <div class="ba__handle" aria-hidden="true"><span class="ba__knob"><svg viewBox="0 0 26 12"><path d="M6 1L1 6l5 5M20 1l5 5-5 5M1 6h24"/></svg></span></div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- MONTE SEU PLANO — "Ficha que se preenche" -->
   <section class="section section--nude" id="plano">
@@ -611,7 +556,6 @@ details[open] .pm { transform: rotate(45deg); }
     <ul class="footer__links">
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#procedimentos">Procedimentos</a></li>
-      <li><a href="#resultados">Resultados</a></li>
       <li><a href="#plano">Seu plano</a></li>
       <li><a href="https://www.instagram.com/dra.camilafagundes/" target="_blank" rel="noopener">Instagram</a></li>
       <li><a data-wa href="https://wa.me/5531971059010" target="_blank" rel="noopener">WhatsApp</a></li>
@@ -683,33 +627,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.faq details').forEach(d => d.addEventListener('toggle', () => {
     if (d.open && motion) gsap.fromTo(d.querySelector('p'), { opacity: 0, y: -8 }, { opacity: 1, y: 0, duration: T.mid, ease: EASE });
   }));
-
-  /* ---------- Before / after (transform-only comparer) ---------- */
-  const cases = [
-    { a: 'fotos/caso-2-antes.jpg', b: 'fotos/caso-2-depois.jpg', op: '50% 50%', cap: 'Botox · suavização das linhas entre as sobrancelhas' },
-    { a: 'fotos/caso-1-antes.jpg', b: 'fotos/caso-1-depois.jpg', op: '70% 50%', cap: 'Rinomodelação · perfil alinhado, sem cirurgia' },
-    { a: 'fotos/caso-3-antes.jpg', b: 'fotos/caso-3-depois.jpg', op: '50% 50%', cap: 'Lábios · contorno e volume na medida certa' },
-    { a: 'fotos/caso-4-antes.jpg', b: 'fotos/caso-4-depois.jpg', op: '50% 50%', cap: 'Harmonização facial · sutileza e equilíbrio' }
-  ];
-  const ba = document.getElementById('ba'), range = ba.querySelector('input');
-  const imgA = document.getElementById('ba-a'), imgB = document.getElementById('ba-b');
-  const cap = document.querySelector('.results__cap'), tabs = [...document.querySelectorAll('.tab')];
-  const setP = v => { ba.style.setProperty('--p', v + '%'); range.value = Math.round(v); };
-  let scrub = null;
-  const release = () => { if (scrub) { scrub.kill(); scrub = null; } };
-  range.addEventListener('input', () => { release(); setP(+range.value); });
-  range.addEventListener('pointerdown', release);
-  range.addEventListener('keydown', release);
-  const show = i => {
-    const c = cases[i]; release();
-    tabs.forEach((t, k) => t.setAttribute('aria-selected', k === i));
-    ba.style.setProperty('--op', c.op); imgA.src = c.a; imgB.src = c.b;
-    imgA.alt = 'Antes: ' + c.cap; imgB.alt = 'Depois: ' + c.cap; cap.textContent = c.cap;
-    if (motion) { const o = { v: 100 }; gsap.to(o, { v: 50, duration: T.slow, ease: EASE, onUpdate: () => setP(o.v) }); } else setP(50);
-  };
-  tabs.forEach((t, i) => t.addEventListener('click', () => show(i)));
-  ba.style.setProperty('--op', cases[0].op);
-  setP(50);
 
   /* ---------- "Ficha que se preenche" ---------- */
   const AREAS = [
@@ -806,12 +723,6 @@ document.addEventListener('DOMContentLoaded', () => {
     onEnter: els => gsap.fromTo(els, { opacity: 0, y: isDesktop() ? 28 : 16 }, { opacity: 1, y: 0, duration: T.mid + .2, ease: EASE, stagger: STAGGER, overwrite: true })
   });
   gsap.to('.cta .ln > span', { y: 0, duration: T.slow, ease: EASE, stagger: .12, scrollTrigger: { trigger: '.cta', start: 'top 70%', once: true } });
-
-  /* "Revelação do resultado" — scroll drives the divider from antes (100%) to the comparison point (50%) */
-  const proxy = { v: 100 };
-  setP(100);
-  scrub = gsap.to(proxy, { v: 50, ease: 'none', onUpdate: () => setP(proxy.v),
-    scrollTrigger: { trigger: ba, start: 'top 85%', end: 'center 45%', scrub: .5 } }).scrollTrigger;
 
   addEventListener('load', () => ScrollTrigger.refresh());
 });

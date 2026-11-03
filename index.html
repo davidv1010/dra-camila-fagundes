@@ -257,11 +257,8 @@ details[open] .pm { transform: rotate(45deg); }
 .pick__item[aria-pressed="true"] .pick__plus { background: var(--rose-soft); }
 .pick__item[aria-pressed="true"] .pick__plus::before { transform: rotate(45deg); }
 .pick__item[aria-pressed="true"] .pick__plus::after { transform: rotate(135deg); }
-.photo--brand { display: grid; place-items: center; background: #000; }
-.card .photo--brand img { width: 46%; height: auto; object-fit: contain; filter: none; }
 .card--wide { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 28px; padding: 12px; }
 .card--wide .photo { flex: none; width: calc((100% - 56px) / 3 - 14px); aspect-ratio: 4 / 3; }
-.card--wide .photo--brand img { width: 34%; }
 .card--wide .card__body { padding: 0 24px 0 0; }
 .footer { background: var(--off-white); border-top: 1px solid rgba(122, 82, 50, .25); padding: 72px 0 40px; text-align: center; }
 .footer__logo { width: 220px; height: auto; margin: 0 auto; display: block; padding: 26px; border-radius: 50%; background: #000; }
@@ -296,7 +293,6 @@ details[open] .pm { transform: rotate(45deg); }
   .card { scroll-snap-align: center; }
   .card--wide { grid-column: auto; flex-direction: column; align-items: stretch; gap: 0; padding: 12px 12px 26px; }
   .card--wide .photo { width: auto; aspect-ratio: 3 / 4; }
-  .card--wide .photo--brand img { width: 46%; }
   .card--wide .card__body { padding: 22px 12px 0; }
   .plan__media { margin: 0 auto 40px; width: min(80%, 360px); }
   .faq__head { margin-bottom: 30px; }
@@ -420,7 +416,7 @@ details[open] .pm { transform: rotate(45deg); }
           <div class="card__body"><span class="label">Firmeza + colágeno</span><h3 class="h3">Hipro</h3><p>Firmeza + colágeno e contorno facial.</p></div>
         </article>
         <article class="card card--wide" data-reveal>
-          <div class="photo photo--brand"><img src="fotos/logo-sf.png?v=2" alt="" loading="lazy"></div>
+          <div class="photo"><img src="fotos/proc-limpeza.jpg" alt="Limpeza de pele com máscara facial" loading="lazy"></div>
           <div class="card__body"><span class="label">Pele renovada</span><h3 class="h3">Limpeza de pele</h3><p>Pele limpa, renovada e com mais viço. Ótima para manter os resultados dos outros tratamentos.</p></div>
         </article>
       </div>

@@ -244,11 +244,19 @@ details[open] .pm { transform: rotate(45deg); }
 .cta .h2 { font-size: clamp(2.1rem, 1.2rem + 4vw, 4.5rem); margin: 24px auto 22px; }
 .cta .h2 em { color: var(--rose-soft); }
 .cta p { color: #EADFD3; max-width: 34em; margin: 0 auto 20px; }
-.pick { justify-content: center; max-width: 760px; margin: 0 auto 40px; }
-.pick .chip { background: transparent; color: var(--off-white); border-color: rgba(255, 255, 255, .45); }
-.pick .chip::before { border-color: var(--off-white); }
-.pick .chip[aria-pressed="true"] { background: var(--off-white); color: var(--cafe); border-color: var(--off-white); }
-.pick .chip[aria-pressed="true"]::before { background: var(--rose); border-color: var(--rose); }
+.pick { max-width: 560px; margin: 0 auto 40px; text-align: left; }
+.pick__group + .pick__group { margin-top: 28px; }
+.pick__title { font-family: var(--sans); font-size: .95rem; font-weight: 600; line-height: 1.35; color: var(--off-white); margin: 0 0 4px; }
+.pick__item { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; min-height: 52px; padding: 0; background: none; border: 0; border-bottom: 1px solid rgba(255, 255, 255, .4); color: rgba(255, 255, 255, .88); font: inherit; font-size: 1rem; text-align: left; cursor: pointer; }
+.pick__plus { position: relative; flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--off-white); transition: transform var(--t-fast) var(--ease-trace), background-color var(--t-fast); }
+.pick__plus::before, .pick__plus::after { content: ""; position: absolute; left: 50%; top: 50%; width: 12px; height: 2px; margin: -1px 0 0 -6px; background: var(--cafe); border-radius: 1px; transition: transform var(--t-fast) var(--ease-trace); }
+.pick__plus::after { transform: rotate(90deg); }
+.pick__item:hover .pick__plus { transform: scale(1.08); }
+.pick__item:active .pick__plus { transform: scale(.9); }
+.pick__item[aria-pressed="true"] { color: var(--off-white); font-weight: 500; border-bottom-color: var(--off-white); }
+.pick__item[aria-pressed="true"] .pick__plus { background: var(--rose-soft); }
+.pick__item[aria-pressed="true"] .pick__plus::before { transform: rotate(45deg); }
+.pick__item[aria-pressed="true"] .pick__plus::after { transform: rotate(135deg); }
 .extra { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 40px; padding: 30px 34px; border-radius: var(--radius); background: var(--nude); text-decoration: none; transition: transform var(--t-mid) var(--ease-trace); }
 .extra .h3 { margin: 10px 0 6px; }
 .extra p { color: var(--taupe); max-width: 40em; }
@@ -444,14 +452,33 @@ details[open] .pm { transform: rotate(45deg); }
       <span class="label" data-reveal>Agende sua avaliação</span>
       <h2 class="h2"><span class="ln"><span>Pronta para se</span></span><span class="ln"><span>apaixonar <em>por si?</em></span></span></h2>
       <p data-reveal>Selecione os procedimentos que você quer:</p>
-      <div class="chips pick" id="pick" role="group" aria-label="Procedimentos" data-reveal>
-        <button type="button" class="chip" aria-pressed="false">Botox</button>
-        <button type="button" class="chip" aria-pressed="false">Lábios</button>
-        <button type="button" class="chip" aria-pressed="false">Harmonização facial</button>
-        <button type="button" class="chip" aria-pressed="false">Bioestimulador</button>
-        <button type="button" class="chip" aria-pressed="false">Rinomodelação</button>
-        <button type="button" class="chip" aria-pressed="false">Hipro</button>
-        <button type="button" class="chip" aria-pressed="false">Limpeza de pele</button>
+      <div class="pick" id="pick" data-reveal>
+        <div class="pick__group" role="group" aria-label="Botox">
+          <h3 class="pick__title">Botox</h3>
+          <button type="button" class="pick__item" aria-pressed="false" data-p="Botox Full Face">Botox Full Face<span class="pick__plus" aria-hidden="true"></span></button>
+          <button type="button" class="pick__item" aria-pressed="false" data-p="Botox Platismo">Botox Platismo<span class="pick__plus" aria-hidden="true"></span></button>
+        </div>
+        <div class="pick__group" role="group" aria-label="Rejuvenescimento facial e pescoço / gerenciamento de pele">
+          <h3 class="pick__title">Rejuvenescimento facial e pescoço / gerenciamento de pele</h3>
+          <button type="button" class="pick__item" aria-pressed="false" data-p="Bioestimulador de Colágeno">Bioestimulador de Colágeno<span class="pick__plus" aria-hidden="true"></span></button>
+          <button type="button" class="pick__item" aria-pressed="false" data-p="Hipro">Hipro<span class="pick__plus" aria-hidden="true"></span></button>
+          <button type="button" class="pick__item" aria-pressed="false" data-p="Microagulhamento e Peeling">Microagulhamento e Peeling<span class="pick__plus" aria-hidden="true"></span></button>
+          <button type="button" class="pick__item" aria-pressed="false" data-p="Limpeza de Pele">Limpeza de Pele<span class="pick__plus" aria-hidden="true"></span></button>
+        </div>
+        <div class="pick__group" role="group" aria-label="Preenchimentos">
+          <h3 class="pick__title">Preenchimentos</h3>
+          <button type="button" class="pick__item" aria-pressed="false" data-p="preenchimento de lábios">Lábios<span class="pick__plus" aria-hidden="true"></span></button>
+          <button type="button" class="pick__item" aria-pressed="false" data-p="preenchimento de mento">Mento<span class="pick__plus" aria-hidden="true"></span></button>
+          <button type="button" class="pick__item" aria-pressed="false" data-p="preenchimento de mandíbula">Mandíbula<span class="pick__plus" aria-hidden="true"></span></button>
+          <button type="button" class="pick__item" aria-pressed="false" data-p="Rinomodelação">Rinomodelação<span class="pick__plus" aria-hidden="true"></span></button>
+          <button type="button" class="pick__item" aria-pressed="false" data-p="preenchimento malar">Malar<span class="pick__plus" aria-hidden="true"></span></button>
+          <button type="button" class="pick__item" aria-pressed="false" data-p="preenchimento de olheiras">Olheiras<span class="pick__plus" aria-hidden="true"></span></button>
+        </div>
+        <div class="pick__group" role="group" aria-label="Intradermoterapia">
+          <h3 class="pick__title">Intradermoterapia</h3>
+          <button type="button" class="pick__item" aria-pressed="false" data-p="Intradermoterapia capilar">Capilar<span class="pick__plus" aria-hidden="true"></span></button>
+          <button type="button" class="pick__item" aria-pressed="false" data-p="Lipo Enzimática">Lipo Enzimática<span class="pick__plus" aria-hidden="true"></span></button>
+        </div>
       </div>
       <a class="btn btn--rose" id="pick-send" data-reveal data-wa href="https://wa.me/5531971059010" target="_blank" rel="noopener">Agendar pelo WhatsApp <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
     </div>
@@ -533,11 +560,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* Final picker: chosen procedures go into the WhatsApp message */
   const pickSend = document.getElementById('pick-send');
-  const pickChips = [...document.querySelectorAll('#pick .chip')];
+  const pickChips = [...document.querySelectorAll('#pick .pick__item')];
   const joinPt = l => l.length > 1 ? l.slice(0, -1).join(', ') + ' e ' + l[l.length - 1] : l.join('');
   pickChips.forEach(c => c.addEventListener('click', () => {
     c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') !== 'true');
-    const chosen = pickChips.filter(b => b.getAttribute('aria-pressed') === 'true').map(b => b.textContent);
+    const chosen = pickChips.filter(b => b.getAttribute('aria-pressed') === 'true').map(b => b.dataset.p);
     pickSend.href = WA + encodeURIComponent(waMsg(joinPt(chosen)));
   }));
 

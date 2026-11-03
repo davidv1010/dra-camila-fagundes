@@ -115,7 +115,7 @@ button, input { font: inherit; color: inherit; }
 .frame { position: absolute; inset: -14px 14px 14px -14px; border: 1px solid var(--gold); border-radius: 50% 50% var(--radius) var(--radius) / 40% 40% var(--radius) var(--radius); pointer-events: none; }
 .blob { position: absolute; z-index: 0; width: 420px; height: 420px; border-radius: 50%; background: var(--rose); opacity: .16; filter: blur(80px); pointer-events: none; }
 
-/* Face map overlay (hero, pin and planner) — SVG in the 1200×1500 space of hero-dra.jpg */
+/* Hero photo wrapper (zoom + parallax move as one) */
 .pz { position: absolute; inset: 0; }
 
 /* Header */
@@ -210,17 +210,7 @@ button, input { font: inherit; color: inherit; }
 .is-pinned .pstep { opacity: .28; transition: opacity var(--t-mid) var(--ease-pulse); }
 .is-pinned .pstep.on { opacity: 1; }
 
-/* Monte seu plano */
-.planner__grid { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; align-items: start; }
-.planner__media { grid-column: 1 / 6; position: relative; max-width: 460px; width: 100%; }
-.planner__body { grid-column: 7 / 13; }
-.planner__body .h2 { margin: 18px 0 18px; }
-.field { position: relative; margin: 28px 0 22px; }
-.field label { display: block; font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; font-weight: 500; color: var(--taupe); margin-bottom: 6px; }
-.field input { width: 100%; height: 50px; border: 0; border-bottom: 1px solid rgba(61, 40, 24, .35); background: transparent; font-size: 1.1rem; padding: 0 2px; outline: none; }
-.field input::placeholder { color: #9C8573; }
-.field__line { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .5s var(--ease-trace); }
-.field input:focus ~ .field__line { transform: scaleX(1); }
+/* Seleção de procedimentos (chips) */
 .chips { display: flex; flex-wrap: wrap; gap: 10px; border: 0; }
 .chip { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid rgba(61, 40, 24, .4); background: var(--white); cursor: pointer; font-size: .92rem; transition: transform var(--t-fast) var(--ease-trace); }
 .chip::before { content: ""; width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--cafe); }
@@ -228,16 +218,6 @@ button, input { font: inherit; color: inherit; }
 .chip:active { transform: scale(.95); }
 .chip[aria-pressed="true"] { background: var(--cafe); color: var(--off-white); border-color: var(--cafe); }
 .chip[aria-pressed="true"]::before { background: var(--rose); border-color: var(--rose); }
-.ficha { margin-top: 30px; background: var(--white); border-radius: var(--radius); padding: 28px; border: 1px solid rgba(122, 82, 50, .45); }
-.ficha__row { display: grid; grid-template-columns: 110px 1fr; gap: 14px; padding: 10px 0; border-bottom: 1px dashed rgba(122, 82, 50, .55); font-size: .95rem; }
-.ficha__row:last-of-type { border-bottom: 0; }
-.ficha__row dt { font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--taupe); font-weight: 500; padding-top: 4px; }
-.ficha__row dd { min-height: 1.6em; }
-.ficha__list { list-style: none; display: grid; gap: 4px; }
-.ficha__empty { color: var(--taupe); font-style: italic; }
-.ficha .btn { margin-top: 22px; width: 100%; }
-.ficha__error { color: #8A2E2A; font-size: .88rem; margin-top: 10px; min-height: 1.4em; }
-.ficha__note { font-size: .8rem; color: var(--taupe); margin-top: 6px; }
 
 /* FAQ */
 .faq__grid { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; align-items: start; }
@@ -301,8 +281,8 @@ details[open] .pm { transform: rotate(45deg); }
   .nav__links, .nav .btn { display: none; }
   .burger { display: block; }
   .hero { min-height: auto; padding-top: 96px; }
-  .hero__grid, .about__grid, .faq__grid, .plan__grid, .planner__grid { grid-template-columns: 1fr; }
-  .hero__grid > *, .about__grid > *, .faq__grid > *, .plan__grid > *, .planner__grid > * { grid-column: 1 / -1; }
+  .hero__grid, .about__grid, .faq__grid, .plan__grid { grid-template-columns: 1fr; }
+  .hero__grid > *, .about__grid > *, .faq__grid > *, .plan__grid > * { grid-column: 1 / -1; }
   .hero__media { order: -1; margin: 0 auto 36px; width: min(84%, 420px); }
   .hero__text .label { display: none; }
   .hero__text .display { margin-top: 0; }
@@ -313,7 +293,6 @@ details[open] .pm { transform: rotate(45deg); }
   .cards::-webkit-scrollbar { display: none; }
   .card { scroll-snap-align: start; }
   .plan__media { margin: 0 auto 40px; width: min(80%, 360px); }
-  .planner__media { margin: 0 auto 36px; width: min(86%, 400px); }
   .faq__head { margin-bottom: 30px; }
   .contact__card { position: relative; right: auto; bottom: auto; margin: -64px auto 0; width: calc(100% - 32px); padding: 26px 22px; }
 }
@@ -321,8 +300,6 @@ details[open] .pm { transform: rotate(45deg); }
   .label { font-size: .7rem; letter-spacing: .12em; gap: 10px; }
   .label::before { width: 20px; }
   .hero__ctas .btn { flex: 1 1 100%; }
-  .ficha { padding: 22px 18px; }
-  .ficha__row { grid-template-columns: 90px 1fr; }
   .faq details p { padding-right: 0; }
   .wa { right: 16px; bottom: 16px; }
 }
@@ -347,7 +324,7 @@ details[open] .pm { transform: rotate(45deg); }
     <ul class="nav__links">
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#procedimentos">Procedimentos</a></li>
-      <li><a href="#plano">Seu plano</a></li>
+      <li><a href="#agendar">Agende</a></li>
       <li><a href="#duvidas">Dúvidas</a></li>
     </ul>
     <a class="btn" data-wa href="https://wa.me/5531971059010" target="_blank" rel="noopener">Agendar <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
@@ -359,7 +336,7 @@ details[open] .pm { transform: rotate(45deg); }
   <ul>
     <li><a href="#sobre">Sobre</a></li>
     <li><a href="#procedimentos">Procedimentos</a></li>
-    <li><a href="#plano">Monte seu plano</a></li>
+    <li><a href="#agendar">Agende sua avaliação</a></li>
     <li><a href="#duvidas">Dúvidas</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
@@ -382,7 +359,7 @@ details[open] .pm { transform: rotate(45deg); }
         <p class="lead" data-hero>Resultado natural, planejado ponto a ponto para o seu rosto.</p>
         <div class="hero__ctas" data-hero>
           <a class="btn" data-wa href="https://wa.me/5531971059010" target="_blank" rel="noopener">Agendar avaliação <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
-          <a class="btn btn--ghost" href="#plano">Monte seu plano</a>
+          <a class="btn btn--ghost" href="#agendar">Escolha seus procedimentos</a>
         </div>
       </div>
       <div class="hero__media" data-hero-media>
@@ -479,39 +456,23 @@ details[open] .pm { transform: rotate(45deg); }
   </section>
 
 
-  <!-- MONTE SEU PLANO — "Ficha que se preenche" -->
-  <section class="section section--nude" id="plano">
-    <div class="container planner__grid">
-      <div class="planner__media" data-reveal>
-        <div class="frame" aria-hidden="true"></div>
-        <div class="photo arch">
-          <img src="fotos/hero-dra.jpg" alt="" width="1200" height="1500" loading="lazy">
-        </div>
+  <!-- CTA -->
+  <section class="section cta" id="agendar">
+    <div class="blob" aria-hidden="true"></div>
+    <div class="container" style="position:relative">
+      <span class="label" data-reveal>Agende sua avaliação</span>
+      <h2 class="h2"><span class="ln"><span>Pronta para se</span></span><span class="ln"><span>apaixonar <em>por si?</em></span></span></h2>
+      <p data-reveal>Selecione os procedimentos que você quer:</p>
+      <div class="chips pick" id="pick" role="group" aria-label="Procedimentos" data-reveal>
+        <button type="button" class="chip" aria-pressed="false">Botox</button>
+        <button type="button" class="chip" aria-pressed="false">Lábios</button>
+        <button type="button" class="chip" aria-pressed="false">Harmonização facial</button>
+        <button type="button" class="chip" aria-pressed="false">Bioestimulador</button>
+        <button type="button" class="chip" aria-pressed="false">Rinomodelação</button>
+        <button type="button" class="chip" aria-pressed="false">Hipro</button>
+        <button type="button" class="chip" aria-pressed="false">Limpeza de pele</button>
       </div>
-      <div class="planner__body">
-        <span class="label" data-reveal>Monte seu plano</span>
-        <h2 class="h2" data-reveal>Marque o que você <em>quer realçar</em></h2>
-        <p class="muted measure" data-reveal>Toque nas áreas e envie seu plano.</p>
-        <form id="planner" novalidate>
-          <div class="field" data-reveal>
-            <label for="nome">Seu nome (opcional)</label>
-            <input id="nome" name="nome" type="text" autocomplete="given-name" placeholder="Maria">
-            <span class="field__line" aria-hidden="true"></span>
-          </div>
-          <fieldset class="chips" data-reveal>
-            <legend class="sr-only">Áreas que você quer realçar</legend>
-          </fieldset>
-          <div class="ficha" data-reveal>
-            <dl>
-              <div class="ficha__row"><dt>Paciente</dt><dd id="f-nome" class="ficha__empty">—</dd></div>
-              <div class="ficha__row"><dt>Áreas</dt><dd><ul class="ficha__list" id="f-areas"><li class="ficha__empty">Nenhuma área marcada ainda</li></ul></dd></div>
-            </dl>
-            <button class="btn" type="submit">Enviar meu plano no WhatsApp <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></button>
-            <p class="ficha__error" id="f-error" aria-live="polite"></p>
-            <p class="ficha__note">A indicação final é feita na avaliação.</p>
-          </div>
-        </form>
-      </div>
+      <a class="btn btn--rose" id="pick-send" data-reveal data-wa href="https://wa.me/5531971059010" target="_blank" rel="noopener">Agendar pelo WhatsApp <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
     </div>
   </section>
 
@@ -551,25 +512,6 @@ details[open] .pm { transform: rotate(45deg); }
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="section cta">
-    <div class="blob" aria-hidden="true"></div>
-    <div class="container" style="position:relative">
-      <span class="label" data-reveal>Agende sua avaliação</span>
-      <h2 class="h2"><span class="ln"><span>Pronta para se</span></span><span class="ln"><span>apaixonar <em>por si?</em></span></span></h2>
-      <p data-reveal>Selecione os procedimentos que você quer:</p>
-      <div class="chips pick" id="pick" role="group" aria-label="Procedimentos" data-reveal>
-        <button type="button" class="chip" aria-pressed="false">Botox</button>
-        <button type="button" class="chip" aria-pressed="false">Lábios</button>
-        <button type="button" class="chip" aria-pressed="false">Harmonização facial</button>
-        <button type="button" class="chip" aria-pressed="false">Bioestimulador</button>
-        <button type="button" class="chip" aria-pressed="false">Rinomodelação</button>
-        <button type="button" class="chip" aria-pressed="false">Hipro</button>
-        <button type="button" class="chip" aria-pressed="false">Limpeza de pele</button>
-      </div>
-      <a class="btn btn--rose" id="pick-send" data-reveal data-wa href="https://wa.me/5531971059010" target="_blank" rel="noopener">Agendar pelo WhatsApp <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
-    </div>
-  </section>
 </main>
 
 <footer class="footer">
@@ -578,7 +520,7 @@ details[open] .pm { transform: rotate(45deg); }
     <ul class="footer__links">
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#procedimentos">Procedimentos</a></li>
-      <li><a href="#plano">Seu plano</a></li>
+      <li><a href="#agendar">Agende</a></li>
       <li><a href="https://www.instagram.com/dra.camilafagundes/" target="_blank" rel="noopener">Instagram</a></li>
       <li><a data-wa href="https://wa.me/5531971059010" target="_blank" rel="noopener">WhatsApp</a></li>
     </ul>
@@ -659,52 +601,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.faq details').forEach(d => d.addEventListener('toggle', () => {
     if (d.open && motion) gsap.fromTo(d.querySelector('p'), { opacity: 0, y: -8 }, { opacity: 1, y: 0, duration: T.mid, ease: EASE });
   }));
-
-  /* ---------- "Ficha que se preenche" ---------- */
-  const AREAS = [
-    { id: 'testa', label: 'Linha de expressão', proc: 'botox' },
-    { id: 'olheiras', label: 'Olheiras', proc: 'preenchimento de olheiras' },
-    { id: 'nariz', label: 'Nariz', proc: 'rinomodelação' },
-    { id: 'labios', label: 'Lábios', proc: 'preenchimento labial' },
-    { id: 'contorno', label: 'Contorno', proc: 'mandíbula e queixo (harmonização)' },
-    { id: 'pele', label: 'Pele', proc: 'firmeza e viço (bioestimulador, Hipro ou limpeza de pele)' }
-  ];
-  const chipsBox = document.querySelector('#planner .chips');
-  const fNome = document.getElementById('f-nome'), fAreas = document.getElementById('f-areas'), fErr = document.getElementById('f-error');
-  const nome = document.getElementById('nome');
-  const sel = new Set();
-  AREAS.forEach(a => {
-    const b = document.createElement('button');
-    b.type = 'button'; b.className = 'chip'; b.textContent = a.label; b.setAttribute('aria-pressed', 'false'); b.dataset.area = a.id;
-    b.addEventListener('click', () => toggle(a.id));
-    chipsBox.appendChild(b);
-  });
-  function toggle(id) {
-    const on = !sel.has(id); on ? sel.add(id) : sel.delete(id);
-    fErr.textContent = '';
-    chipsBox.querySelector(`[data-area="${id}"]`).setAttribute('aria-pressed', on);
-    renderFicha(id, on);
-  }
-  function renderFicha(changed, on) {
-    const list = AREAS.filter(a => sel.has(a.id));
-    fAreas.innerHTML = list.length ? '' : '<li class="ficha__empty">Nenhuma área marcada ainda</li>';
-    list.forEach(a => {
-      const li = document.createElement('li'); li.innerHTML = `<strong>${a.label}</strong> · <span class="muted">${a.proc}</span>`;
-      fAreas.appendChild(li);
-      if (motion && a.id === changed && on) gsap.fromTo(li, { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: T.mid, ease: EASE });
-    });
-  }
-  nome.addEventListener('input', () => {
-    const v = nome.value.trim(); fNome.textContent = v || '—'; fNome.classList.toggle('ficha__empty', !v);
-  });
-  document.getElementById('planner').addEventListener('submit', e => {
-    e.preventDefault();
-    if (!sel.size) { fErr.textContent = 'Marque pelo menos uma área para montar o seu plano.'; return; }
-    const v = nome.value.trim();
-    const areas = AREAS.filter(a => sel.has(a.id)).map(a => `• ${a.label}: ${a.proc}`).join('\n');
-    const msg = `Olá, Dra. Camila!${v ? ` Sou ${v}.` : ''} Montei meu plano no site e tenho interesse em:\n${areas}\nQuero agendar uma avaliação.`;
-    window.open(WA + encodeURIComponent(msg), '_blank', 'noopener');
-  });
 
   /* ---------- Without motion: static, complete page ---------- */
   if (!motion) return;

@@ -104,8 +104,6 @@ button, input { font: inherit; color: inherit; }
 .btn--rose { background: var(--rose); border-color: var(--rose); color: #fff; }
 .btn--rose::before { background: var(--off-white); }
 .btn--rose:hover { color: var(--cafe); border-color: var(--off-white); }
-.link-arrow { display: inline-flex; align-items: center; gap: 10px; font-size: .78rem; letter-spacing: .15em; text-transform: uppercase; font-weight: 500; }
-.link-arrow .arrow { width: 26px; height: 10px; transition: transform .45s var(--ease-trace); }
 
 /* Monogram & photos */
 .mono { width: 44px; height: 44px; flex: none; object-fit: contain; }
@@ -130,7 +128,6 @@ button, input { font: inherit; color: inherit; }
 .nav__links a { font-size: .74rem; letter-spacing: .15em; text-transform: uppercase; text-decoration: none; font-weight: 500; position: relative; padding: 6px 0; }
 .nav__links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .45s var(--ease-trace); }
 .nav__links a:hover::after { transform: scaleX(1); }
-.nav .btn { height: 44px; padding: 0 22px; }
 .burger { display: none; width: 48px; height: 48px; border: 0; background: none; cursor: pointer; position: relative; }
 .burger span { position: absolute; left: 12px; right: 12px; height: 1px; background: var(--cafe); transition: transform .45s var(--ease-trace); }
 .burger span:nth-child(1) { top: 19px; } .burger span:nth-child(2) { top: 28px; }
@@ -140,7 +137,6 @@ button, input { font: inherit; color: inherit; }
 .menu.open { opacity: 1; visibility: visible; }
 .menu ul { list-style: none; }
 .menu li a { display: block; font-family: var(--serif); font-size: 2.25rem; line-height: 1.3; text-decoration: none; padding: 6px 0; }
-.menu .btn { margin-top: 36px; align-self: flex-start; }
 
 /* Hero */
 .hero { position: relative; min-height: 100svh; display: flex; align-items: center; padding: 120px 0 72px; overflow: hidden; }
@@ -151,7 +147,6 @@ button, input { font: inherit; color: inherit; }
 .ln { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.1em; }
 .ln > span { display: block; }
 .hero__slogan { font-family: var(--serif); font-style: italic; font-size: clamp(1.4rem, 1.1rem + 1vw, 1.8rem); color: var(--rose-ink); margin-bottom: 14px; }
-.hero__ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
 .hero__media { grid-column: 8 / 13; position: relative; }
 .hero__media .photo { box-shadow: 0 30px 60px -30px rgba(61, 40, 24, .35); }
 .seal { position: absolute; left: -64px; bottom: 56px; width: 136px; height: 136px; border-radius: 50%; background: var(--off-white); display: grid; place-items: center; box-shadow: 0 18px 40px -18px rgba(61, 40, 24, .3); }
@@ -183,12 +178,8 @@ button, input { font: inherit; color: inherit; }
 .card__body .label::before { display: none; }
 .card .h3 { margin: 8px 0 10px; }
 .card p { font-size: .95rem; color: var(--taupe); line-height: 1.6; flex: 1; }
-.card .link-arrow { margin-top: 18px; }
-.card:hover { transform: translateY(-6px); }
 .card:hover::after { opacity: 1; }
 .card:hover .photo img { transform: scale(1.06); }
-.card:hover .link-arrow .arrow { transform: translateX(5px); }
-.card:active { transform: translateY(-2px) scale(.99); }
 
 /* Como funciona — pinned sequence */
 .plan__grid { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; align-items: center; }
@@ -258,7 +249,6 @@ details[open] .pm { transform: rotate(45deg); }
 .pick .chip[aria-pressed="true"] { background: var(--off-white); color: var(--cafe); border-color: var(--off-white); }
 .pick .chip[aria-pressed="true"]::before { background: var(--rose); border-color: var(--rose); }
 .extra { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 40px; padding: 30px 34px; border-radius: var(--radius); background: var(--nude); text-decoration: none; transition: transform var(--t-mid) var(--ease-trace); }
-.extra:hover { transform: translateY(-4px); }
 .extra .h3 { margin: 10px 0 6px; }
 .extra p { color: var(--taupe); max-width: 40em; }
 .footer { background: var(--off-white); border-top: 1px solid rgba(122, 82, 50, .25); padding: 72px 0 40px; text-align: center; }
@@ -266,11 +256,6 @@ details[open] .pm { transform: rotate(45deg); }
 .footer__links { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 28px; margin: 28px 0; }
 .footer__links a { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; text-decoration: none; font-weight: 500; padding: 8px 0; display: inline-block; }
 .footer__legal { font-size: .8rem; color: var(--taupe); padding-top: 26px; border-top: 1px solid rgba(122, 82, 50, .45); }
-.wa { position: fixed; right: 20px; bottom: 20px; z-index: 40; width: 58px; height: 58px; border-radius: 50%; background: var(--rose); display: grid; place-items: center; box-shadow: 0 12px 30px -10px rgba(61, 40, 24, .5); transition: transform var(--t-fast) var(--ease-trace); }
-.wa::before { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 1px solid var(--rose); animation: pulse 2.8s var(--ease-pulse) infinite; }
-.wa svg { width: 26px; height: 26px; fill: #fff; }
-.wa:hover { transform: scale(1.08); }
-@keyframes pulse { 0% { transform: scale(1); opacity: .8; } 100% { transform: scale(1.6); opacity: 0; } }
 
 /* Start states for animated elements (only with .motion) */
 .motion [data-reveal], .motion [data-hero], .motion [data-hero-media] .photo { opacity: 0; }
@@ -278,7 +263,7 @@ details[open] .pm { transform: rotate(45deg); }
 
 /* Responsive */
 @media (max-width: 960px) {
-  .nav__links, .nav .btn { display: none; }
+  .nav__links { display: none; }
   .burger { display: block; }
   .hero { min-height: auto; padding-top: 96px; }
   .hero__grid, .about__grid, .faq__grid, .plan__grid { grid-template-columns: 1fr; }
@@ -299,9 +284,7 @@ details[open] .pm { transform: rotate(45deg); }
 @media (max-width: 560px) {
   .label { font-size: .7rem; letter-spacing: .12em; gap: 10px; }
   .label::before { width: 20px; }
-  .hero__ctas .btn { flex: 1 1 100%; }
   .faq details p { padding-right: 0; }
-  .wa { right: 16px; bottom: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html:not(.lenis) { scroll-behavior: auto; }
@@ -324,10 +307,8 @@ details[open] .pm { transform: rotate(45deg); }
     <ul class="nav__links">
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#procedimentos">Procedimentos</a></li>
-      <li><a href="#agendar">Agende</a></li>
       <li><a href="#duvidas">Dúvidas</a></li>
     </ul>
-    <a class="btn" data-wa href="https://wa.me/5531971059010" target="_blank" rel="noopener">Agendar <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
     <button class="burger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
   </div>
 </header>
@@ -336,11 +317,9 @@ details[open] .pm { transform: rotate(45deg); }
   <ul>
     <li><a href="#sobre">Sobre</a></li>
     <li><a href="#procedimentos">Procedimentos</a></li>
-    <li><a href="#agendar">Agende sua avaliação</a></li>
     <li><a href="#duvidas">Dúvidas</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
-  <a class="btn" data-wa href="https://wa.me/5531971059010" target="_blank" rel="noopener">Agendar avaliação <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
 </nav>
 
 <main id="topo">
@@ -357,10 +336,6 @@ details[open] .pm { transform: rotate(45deg); }
         </h1>
         <p class="hero__slogan" data-hero>Apaixone-se por si! ✨</p>
         <p class="lead" data-hero>Resultado natural, planejado ponto a ponto para o seu rosto.</p>
-        <div class="hero__ctas" data-hero>
-          <a class="btn" data-wa href="https://wa.me/5531971059010" target="_blank" rel="noopener">Agendar avaliação <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
-          <a class="btn btn--ghost" href="#agendar">Escolha seus procedimentos</a>
-        </div>
       </div>
       <div class="hero__media" data-hero-media>
         <div class="frame" data-hero aria-hidden="true"></div>
@@ -398,35 +373,34 @@ details[open] .pm { transform: rotate(45deg); }
         
       </div>
       <div class="cards">
-        <a class="card" data-reveal data-wa="Botox" href="https://wa.me/5531971059010" target="_blank" rel="noopener">
+        <article class="card" data-reveal>
           <div class="photo"><img src="fotos/proc-botox.jpg" alt="Paciente depois do botox" loading="lazy"></div>
-          <div class="card__body"><span class="label">Linhas de expressão</span><h3 class="h3">Botox</h3><p>Suaviza as linhas de expressão.</p><span class="link-arrow">Agendar <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></span></div>
-        </a>
-        <a class="card" data-reveal data-wa="Lábios" href="https://wa.me/5531971059010" target="_blank" rel="noopener">
+          <div class="card__body"><span class="label">Linhas de expressão</span><h3 class="h3">Botox</h3><p>Suaviza as linhas de expressão.</p></div>
+        </article>
+        <article class="card" data-reveal>
           <div class="photo"><img src="fotos/proc-labios.jpg" alt="Lábios após preenchimento" loading="lazy"></div>
-          <div class="card__body"><span class="label">Contorno e volume</span><h3 class="h3">Lábios</h3><p>Contorno e volume na medida certa.</p><span class="link-arrow">Agendar <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></span></div>
-        </a>
-        <a class="card" data-reveal data-wa="Harmonização facial" href="https://wa.me/5531971059010" target="_blank" rel="noopener">
+          <div class="card__body"><span class="label">Contorno e volume</span><h3 class="h3">Lábios</h3><p>Contorno e volume na medida certa.</p></div>
+        </article>
+        <article class="card" data-reveal>
           <div class="photo"><img src="fotos/proc-harmonizacao.jpg" alt="Paciente depois da harmonização facial" loading="lazy"></div>
-          <div class="card__body"><span class="label">Rosto inteiro</span><h3 class="h3">Harmonização facial</h3><p>Equilíbrio para o rosto inteiro.</p><span class="link-arrow">Agendar <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></span></div>
-        </a>
-        <a class="card" data-reveal data-wa="Bioestimulador" href="https://wa.me/5531971059010" target="_blank" rel="noopener">
+          <div class="card__body"><span class="label">Rosto inteiro</span><h3 class="h3">Harmonização facial</h3><p>Equilíbrio para o rosto inteiro.</p></div>
+        </article>
+        <article class="card" data-reveal>
           <div class="photo"><img src="fotos/proc-bioestimulador.jpg" alt="Paciente depois do bioestimulador" loading="lazy"></div>
-          <div class="card__body"><span class="label">Firmeza da pele</span><h3 class="h3">Bioestimulador</h3><p>Mais colágeno, pele mais firme.</p><span class="link-arrow">Agendar <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></span></div>
-        </a>
-        <a class="card" data-reveal data-wa="Rinomodelação" href="https://wa.me/5531971059010" target="_blank" rel="noopener">
+          <div class="card__body"><span class="label">Firmeza da pele</span><h3 class="h3">Bioestimulador</h3><p>Mais colágeno, pele mais firme.</p></div>
+        </article>
+        <article class="card" data-reveal>
           <div class="photo"><img src="fotos/proc-preenchimento.jpg" alt="Perfil do nariz depois da rinomodelação" loading="lazy"></div>
-          <div class="card__body"><span class="label">Nariz sem cirurgia</span><h3 class="h3">Rinomodelação</h3><p>Perfil do nariz mais alinhado.</p><span class="link-arrow">Agendar <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></span></div>
-        </a>
-        <a class="card" data-reveal data-wa="Hipro" href="https://wa.me/5531971059010" target="_blank" rel="noopener">
+          <div class="card__body"><span class="label">Nariz sem cirurgia</span><h3 class="h3">Rinomodelação</h3><p>Perfil do nariz mais alinhado.</p></div>
+        </article>
+        <article class="card" data-reveal>
           <div class="photo"><img src="fotos/proc-hipro.jpg" alt="Pele antes e depois do Hipro" loading="lazy"></div>
-          <div class="card__body"><span class="label">Firmeza + colágeno</span><h3 class="h3">Hipro</h3><p>Firmeza + colágeno e contorno facial.</p><span class="link-arrow">Agendar <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></span></div>
-        </a>
+          <div class="card__body"><span class="label">Firmeza + colágeno</span><h3 class="h3">Hipro</h3><p>Firmeza + colágeno e contorno facial.</p></div>
+        </article>
       </div>
-      <a class="extra" data-reveal data-wa="Limpeza de pele" href="https://wa.me/5531971059010" target="_blank" rel="noopener">
+      <div class="extra" data-reveal>
         <div><span class="label">Também faço</span><h3 class="h3">Limpeza de pele</h3><p>Pele limpa, renovada e com mais viço. Ótima para manter os resultados dos outros tratamentos.</p></div>
-        <span class="link-arrow">Agendar <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></span>
-      </a>
+      </div>
     </div>
   </section>
 
@@ -507,7 +481,6 @@ details[open] .pm { transform: rotate(45deg); }
           <li><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></svg><div><a href="https://www.instagram.com/dra.camilafagundes/" target="_blank" rel="noopener">@dra.camilafagundes</a><small>Instagram</small></div></li>
           <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div>Atendimento com hora marcada</div></li>
         </ul>
-        <a class="btn" data-wa href="https://wa.me/5531971059010" target="_blank" rel="noopener">Agendar avaliação <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
       </div>
     </div>
   </section>
@@ -520,17 +493,12 @@ details[open] .pm { transform: rotate(45deg); }
     <ul class="footer__links">
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#procedimentos">Procedimentos</a></li>
-      <li><a href="#agendar">Agende</a></li>
       <li><a href="https://www.instagram.com/dra.camilafagundes/" target="_blank" rel="noopener">Instagram</a></li>
       <li><a data-wa href="https://wa.me/5531971059010" target="_blank" rel="noopener">WhatsApp</a></li>
     </ul>
     <p class="footer__legal">© <span id="y"></span> Dra. Camila Fagundes · Biomédica esteta · Harmonização facial em Igarapé – MG</p>
   </div>
 </footer>
-
-<a class="wa" data-wa href="https://wa.me/5531971059010" target="_blank" rel="noopener" aria-label="Conversar pelo WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
-</a>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
@@ -608,7 +576,7 @@ document.addEventListener('DOMContentLoaded', () => {
   gsap.registerPlugin(ScrollTrigger);
   const mm = gsap.matchMedia();
 
-  /* "Entrada do hero" — orchestrated: label → title → subtitle → photo → buttons → seal */
+  /* "Entrada do hero" — orchestrated: label → title → subtitle → photo → seal */
   const hero = document.querySelector('.hero');
   const photoFirst = matchMedia('(max-width: 960px)').matches;  /* on phones the photo sits above the title, so it enters first */
   gsap.timeline({ defaults: { ease: EASE }, delay: .15 })
@@ -617,7 +585,6 @@ document.addEventListener('DOMContentLoaded', () => {
     .fromTo('.hero__slogan, .hero .lead', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: T.mid, stagger: STAGGER }, '-=.7')
     .fromTo('[data-hero-media] .photo', { opacity: 0, scale: .94 }, { opacity: 1, scale: 1, duration: T.slow }, photoFirst ? 0 : '-=.9')
     .fromTo('[data-hero-media] .pz', { scale: 1.18 }, { scale: 1.08, duration: 1.8 }, '<')
-    .fromTo('.hero__ctas', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: T.mid, stagger: STAGGER }, '-=1.2')
     .fromTo('.hero .frame', { opacity: 0, scale: .96 }, { opacity: 1, scale: 1, duration: T.slow }, '-=.8')
     .fromTo('.hero .seal', { opacity: 0, scale: .6, rotate: -40 }, { opacity: 1, scale: 1, rotate: 0, duration: T.slow }, '-=.8');
 

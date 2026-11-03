@@ -6,8 +6,8 @@
 <title>Dra. Camila Fagundes | Harmonização Facial em Igarapé – MG</title>
 <meta name="description" content="Harmonização facial, botox, lábios, preenchimento e bioestimulador com a Dra. Camila Fagundes, biomédica esteta em Igarapé – MG. Apaixone-se por si.">
 <meta name="theme-color" content="#FFFFFF">
-<link rel="icon" type="image/png" href="fotos/logo-sf.png">
-<link rel="apple-touch-icon" href="fotos/logo-sf.png">
+<link rel="icon" type="image/png" href="fotos/logo-sf.png?v=2">
+<link rel="apple-touch-icon" href="fotos/logo-sf.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=DM+Serif+Display:ital@0;1&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -106,7 +106,7 @@ button, input { font: inherit; color: inherit; }
 .btn--rose:hover { color: var(--cafe); border-color: var(--off-white); }
 
 /* Monogram & photos */
-.mono { width: 44px; height: 44px; flex: none; object-fit: contain; padding: 6px; border-radius: 50%; background: #000; }
+.mono { width: 48px; height: 48px; flex: none; object-fit: contain; padding: 4px; border-radius: 50%; background: #000; }
 .photo { position: relative; overflow: hidden; background: var(--nude); }
 .photo img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.92) sepia(.06) contrast(.97); }
 .arch { aspect-ratio: 4 / 5; border-radius: 50% 50% var(--radius) var(--radius) / 40% 40% var(--radius) var(--radius); }
@@ -257,9 +257,12 @@ details[open] .pm { transform: rotate(45deg); }
 .pick__item[aria-pressed="true"] .pick__plus { background: var(--rose-soft); }
 .pick__item[aria-pressed="true"] .pick__plus::before { transform: rotate(45deg); }
 .pick__item[aria-pressed="true"] .pick__plus::after { transform: rotate(135deg); }
-.extra { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 40px; padding: 30px 34px; border-radius: var(--radius); background: var(--nude); text-decoration: none; transition: transform var(--t-mid) var(--ease-trace); }
-.extra .h3 { margin: 10px 0 6px; }
-.extra p { color: var(--taupe); max-width: 40em; }
+.photo--brand { display: grid; place-items: center; background: #000; }
+.card .photo--brand img { width: 46%; height: auto; object-fit: contain; filter: none; }
+.card--wide { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 28px; padding: 12px; }
+.card--wide .photo { flex: none; width: calc((100% - 56px) / 3 - 14px); aspect-ratio: 4 / 3; }
+.card--wide .photo--brand img { width: 34%; }
+.card--wide .card__body { padding: 0 24px 0 0; }
 .footer { background: var(--off-white); border-top: 1px solid rgba(122, 82, 50, .25); padding: 72px 0 40px; text-align: center; }
 .footer__logo { width: 220px; height: auto; margin: 0 auto; display: block; padding: 26px; border-radius: 50%; background: #000; }
 .footer__links { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 28px; margin: 28px 0; }
@@ -291,6 +294,10 @@ details[open] .pm { transform: rotate(45deg); }
   .cards::-webkit-scrollbar { display: none; }
   .cards { grid-auto-columns: 78vw; padding-inline: 11vw; scroll-padding-inline: 11vw; }
   .card { scroll-snap-align: center; }
+  .card--wide { grid-column: auto; flex-direction: column; align-items: stretch; gap: 0; padding: 12px 12px 26px; }
+  .card--wide .photo { width: auto; aspect-ratio: 3 / 4; }
+  .card--wide .photo--brand img { width: 46%; }
+  .card--wide .card__body { padding: 22px 12px 0; }
   .plan__media { margin: 0 auto 40px; width: min(80%, 360px); }
   .faq__head { margin-bottom: 30px; }
   .contact__card { position: relative; right: auto; bottom: auto; margin: -64px auto 0; width: calc(100% - 32px); padding: 26px 22px; }
@@ -315,7 +322,7 @@ details[open] .pm { transform: rotate(45deg); }
 <header class="nav" id="nav">
   <div class="container nav__in">
     <a class="brand" href="#topo" aria-label="Dra. Camila Fagundes, início">
-      <img class="mono" src="fotos/logo-sf.png" alt="" width="256" height="256">
+      <img class="mono" src="fotos/logo-sf.png?v=2" alt="" width="256" height="256">
       <span>Dra. Camila Fagundes<small>Harmonização facial</small></span>
     </a>
     <ul class="nav__links">
@@ -359,7 +366,7 @@ details[open] .pm { transform: rotate(45deg); }
         </div></div>
         <div class="seal" data-hero aria-hidden="true">
           <svg class="ring" viewBox="0 0 120 120"><defs><path id="circ" d="M60 60m-48 0a48 48 0 1 1 96 0a48 48 0 1 1-96 0"/></defs><text><textPath href="#circ" textLength="298" lengthAdjust="spacing">Harmonização Facial • Igarapé MG •</textPath></text></svg>
-          <img class="mono" src="fotos/logo-sf.png" alt="" width="256" height="256">
+          <img class="mono" src="fotos/logo-sf.png?v=2" alt="" width="256" height="256">
         </div>
       </div>
     </div>
@@ -412,9 +419,10 @@ details[open] .pm { transform: rotate(45deg); }
           <div class="photo"><img src="fotos/proc-hipro.jpg" alt="Pele antes e depois do Hipro" loading="lazy"></div>
           <div class="card__body"><span class="label">Firmeza + colágeno</span><h3 class="h3">Hipro</h3><p>Firmeza + colágeno e contorno facial.</p></div>
         </article>
-      </div>
-      <div class="extra" data-reveal>
-        <div><span class="label">Também faço</span><h3 class="h3">Limpeza de pele</h3><p>Pele limpa, renovada e com mais viço. Ótima para manter os resultados dos outros tratamentos.</p></div>
+        <article class="card card--wide" data-reveal>
+          <div class="photo photo--brand"><img src="fotos/logo-sf.png?v=2" alt="" loading="lazy"></div>
+          <div class="card__body"><span class="label">Pele renovada</span><h3 class="h3">Limpeza de pele</h3><p>Pele limpa, renovada e com mais viço. Ótima para manter os resultados dos outros tratamentos.</p></div>
+        </article>
       </div>
     </div>
   </section>
@@ -523,7 +531,7 @@ details[open] .pm { transform: rotate(45deg); }
 
 <footer class="footer">
   <div class="container">
-    <img class="footer__logo" src="fotos/logo-dra.png" alt="Dra. Camila Fagundes, biomédica esteta" width="600" height="600" loading="lazy">
+    <img class="footer__logo" src="fotos/logo-dra.png?v=2" alt="Dra. Camila Fagundes, biomédica esteta" width="600" height="600" loading="lazy">
     <ul class="footer__links">
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#procedimentos">Procedimentos</a></li>

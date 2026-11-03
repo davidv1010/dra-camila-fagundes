@@ -276,10 +276,13 @@ details[open] .pm { transform: rotate(45deg); }
   .hero__text .display { margin-top: 0; }
   .seal { left: -22px; bottom: 24px; width: 104px; height: 104px; }
   .seal .mono { width: 44px; height: 44px; }
-  .about__media { width: min(92%, 440px); margin: 0 auto 48px; padding: 28px 0 28px 28px; }
+  .about__media { width: min(92%, 440px); margin: 0 auto 48px; padding: 24px 0; }
+  .about__media::before { inset: 0 6%; }
+  .about__media .photo { width: 80%; margin: 0 auto; }
   .cards { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%; overflow-x: auto; scroll-snap-type: x mandatory; gap: 16px; padding-bottom: 12px; margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); scrollbar-width: none; }
   .cards::-webkit-scrollbar { display: none; }
-  .card { scroll-snap-align: start; }
+  .cards { grid-auto-columns: 78vw; padding-inline: 11vw; scroll-padding-inline: 11vw; }
+  .card { scroll-snap-align: center; }
   .plan__media { margin: 0 auto 40px; width: min(80%, 360px); }
   .faq__head { margin-bottom: 30px; }
   .contact__card { position: relative; right: auto; bottom: auto; margin: -64px auto 0; width: calc(100% - 32px); padding: 26px 22px; }

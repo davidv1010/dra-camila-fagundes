@@ -271,7 +271,16 @@ details[open] .pm { transform: rotate(45deg); }
 .cta .label { color: var(--rose-soft); }
 .cta .h2 { font-size: clamp(2.1rem, 1.2rem + 4vw, 4.5rem); margin: 24px auto 22px; }
 .cta .h2 em { color: var(--rose-soft); }
-.cta p { color: #EADFD3; max-width: 34em; margin: 0 auto 40px; }
+.cta p { color: #EADFD3; max-width: 34em; margin: 0 auto 20px; }
+.pick { justify-content: center; max-width: 760px; margin: 0 auto 40px; }
+.pick .chip { background: transparent; color: var(--off-white); border-color: rgba(255, 255, 255, .45); }
+.pick .chip::before { border-color: var(--off-white); }
+.pick .chip[aria-pressed="true"] { background: var(--off-white); color: var(--cafe); border-color: var(--off-white); }
+.pick .chip[aria-pressed="true"]::before { background: var(--rose); border-color: var(--rose); }
+.extra { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 40px; padding: 30px 34px; border-radius: var(--radius); background: var(--nude); text-decoration: none; transition: transform var(--t-mid) var(--ease-trace); }
+.extra:hover { transform: translateY(-4px); }
+.extra .h3 { margin: 10px 0 6px; }
+.extra p { color: var(--taupe); max-width: 40em; }
 .footer { background: var(--off-white); border-top: 1px solid rgba(122, 82, 50, .25); padding: 72px 0 40px; text-align: center; }
 .footer__logo { width: 170px; height: auto; margin: 0 auto; display: block; }
 .footer__links { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 28px; margin: 28px 0; }
@@ -437,6 +446,10 @@ details[open] .pm { transform: rotate(45deg); }
           <div class="card__body"><span class="label">Firmeza + colágeno</span><h3 class="h3">Hipro</h3><p>Firmeza + colágeno e contorno facial.</p><span class="link-arrow">Agendar <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></span></div>
         </a>
       </div>
+      <a class="extra" data-reveal data-wa="Limpeza de pele" href="https://wa.me/5531971059010" target="_blank" rel="noopener">
+        <div><span class="label">Também faço</span><h3 class="h3">Limpeza de pele</h3><p>Pele limpa, renovada e com mais viço. Ótima para manter os resultados dos outros tratamentos.</p></div>
+        <span class="link-arrow">Agendar <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></span>
+      </a>
     </div>
   </section>
 
@@ -544,8 +557,17 @@ details[open] .pm { transform: rotate(45deg); }
     <div class="container" style="position:relative">
       <span class="label" data-reveal>Agende sua avaliação</span>
       <h2 class="h2"><span class="ln"><span>Pronta para se</span></span><span class="ln"><span>apaixonar <em>por si?</em></span></span></h2>
-      
-      <a class="btn btn--rose" data-reveal data-wa href="https://wa.me/5531971059010" target="_blank" rel="noopener">Agendar pelo WhatsApp <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
+      <p data-reveal>Selecione os procedimentos que você quer:</p>
+      <div class="chips pick" id="pick" role="group" aria-label="Procedimentos" data-reveal>
+        <button type="button" class="chip" aria-pressed="false">Botox</button>
+        <button type="button" class="chip" aria-pressed="false">Lábios</button>
+        <button type="button" class="chip" aria-pressed="false">Harmonização facial</button>
+        <button type="button" class="chip" aria-pressed="false">Bioestimulador</button>
+        <button type="button" class="chip" aria-pressed="false">Rinomodelação</button>
+        <button type="button" class="chip" aria-pressed="false">Hipro</button>
+        <button type="button" class="chip" aria-pressed="false">Limpeza de pele</button>
+      </div>
+      <a class="btn btn--rose" id="pick-send" data-reveal data-wa href="https://wa.me/5531971059010" target="_blank" rel="noopener">Agendar pelo WhatsApp <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
     </div>
   </section>
 </main>
@@ -592,6 +614,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const waMsg = p => p ? `Olá, Dra. Camila! Vi o site e quero agendar uma avaliação de ${p}.` : 'Olá, Dra. Camila! Vi o site e gostaria de agendar uma avaliação.';
   document.querySelectorAll('[data-wa]').forEach(a => { a.href = WA + encodeURIComponent(waMsg(a.dataset.wa)); });
 
+  /* Final picker: chosen procedures go into the WhatsApp message */
+  const pickSend = document.getElementById('pick-send');
+  const pickChips = [...document.querySelectorAll('#pick .chip')];
+  const joinPt = l => l.length > 1 ? l.slice(0, -1).join(', ') + ' e ' + l[l.length - 1] : l.join('');
+  pickChips.forEach(c => c.addEventListener('click', () => {
+    c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') !== 'true');
+    const chosen = pickChips.filter(b => b.getAttribute('aria-pressed') === 'true').map(b => b.textContent);
+    pickSend.href = WA + encodeURIComponent(waMsg(joinPt(chosen)));
+  }));
+
   /* Header: background layer fades in after scrolling */
   const nav = document.getElementById('nav');
   const onScroll = () => nav.classList.toggle('scrolled', scrollY > 24);
@@ -635,7 +667,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 'nariz', label: 'Nariz', proc: 'rinomodelação' },
     { id: 'labios', label: 'Lábios', proc: 'preenchimento labial' },
     { id: 'contorno', label: 'Contorno', proc: 'mandíbula e queixo (harmonização)' },
-    { id: 'pele', label: 'Pele', proc: 'firmeza e viço (bioestimulador ou Hipro)' }
+    { id: 'pele', label: 'Pele', proc: 'firmeza e viço (bioestimulador, Hipro ou limpeza de pele)' }
   ];
   const chipsBox = document.querySelector('#planner .chips');
   const fNome = document.getElementById('f-nome'), fAreas = document.getElementById('f-areas'), fErr = document.getElementById('f-error');
